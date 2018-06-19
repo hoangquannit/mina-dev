@@ -55,7 +55,6 @@
 
             <container name="footer" as="footer" label="Page Footer" htmlTag="div" htmlClass="container">
                 <remove name="form.subscribe"/>
-                <block class="Magento\Theme\Block\Html\Footer" name="copyright" template="html/copyright.phtml"/>
                 <block class="Magento\Framework\View\Element\Template" name="report.bugs" template="Magento_Theme::html/bugreport.phtml" />
             </container>
 
