@@ -26,9 +26,6 @@
 
         <referenceContainer name="header.container">
             <block class="Magento\Framework\View\Element\Template" name="mina_header" template="Magento_Theme::html/mina_header.phtml"  before="-">
-                <!-- TOP LINKS: settings and navigation -->
-                <block class="Magento\Framework\View\Element\Template" name="setting_links" as="setting_links" template="Magento_Theme::html/setting.phtml" />
-                <!-- END TOP LINKS: settings and navigation -->
             </block>
             <!-- <remove element="catalog.topnav"> -->
         </referenceContainer>
