@@ -21,7 +21,6 @@
         <script src="jquery.js" />
         <script src="bootstrap/js/bootstrap.min.js" />
         <script src="js/slide-custom.js" />
-        <!--<script src="js/compressed.min.js" />-->
 
     </head>
 </page>

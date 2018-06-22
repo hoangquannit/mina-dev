@@ -4,115 +4,113 @@
     $productIdRoom3 = $this->getData('array_product_id_room3') ? explode(',', $this->getData('array_product_id_room3')) : '';
 ?>
 
-<section class="section p-l-50 p-r-50 p-t-30 bg-white">
-    <div class="container-fluid">
-        <ul class="list-reset product-list row">
-            <li class="col-md-4 col-sm-6">
-                <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-for-living-room')->toHtml();?>
-            </li>
-            <?php foreach ($productIdRoom1 as $productId):?>
-                <?php
-                    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-                    $product = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);
-                    $abstractProductBlock = $block->getLayout()->createBlock('\Magento\Catalog\Block\Product\AbstractProduct');
-                ?>
-                <li class="col-md-4 col-sm-6">
-                    <div class="image-box image-box-1">
-                        <div class="image">
-                            <a href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
-                                <img src="<?php echo $abstractProductBlock->getUrl('pub/media/catalog').'product'.$product->getImage();?>" />
-                            </a>
-                            <a class="btn-quickview" href="#quickviewModal"><i class="fa fa-search-plus"></i><span>Quick view</span></a>
-                        </div>
-                        <div class="content"><h3 class="title">
-                                <a href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
-                                    <?php /* @escapeNotVerified */ echo $product->getName() ?>
-                                </a>
-                            </h3>
-                            <div class="info"><span class="price"><?php echo $abstractProductBlock->getProductPrice($product);?></span>
-                                <ul class="star-rating">
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star-o"></li>
-                                    <li class="fa fa-star-o"></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            <?php endforeach;?>
-            <?php foreach ($productIdRoom2 as $productId):?>
-                <?php
+<div class="container-fluid">
+    <ul class="list-reset product-list row">
+        <li class="col-md-4 col-sm-6">
+            <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-for-living-room')->toHtml();?>
+        </li>
+        <?php foreach ($productIdRoom1 as $productId):?>
+            <?php
                 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
                 $product = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);
                 $abstractProductBlock = $block->getLayout()->createBlock('\Magento\Catalog\Block\Product\AbstractProduct');
-                ?>
-                <li class="col-md-4 col-sm-6">
-                    <div class="image-box image-box-1">
-                        <div class="image">
+            ?>
+            <li class="col-md-4 col-sm-6">
+                <div class="image-box image-box-1">
+                    <div class="image">
+                        <a href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
+                            <img src="<?php echo $abstractProductBlock->getUrl('pub/media/catalog').'product'.$product->getImage();?>" />
+                        </a>
+                        <a class="btn-quickview" href="#quickviewModal"><i class="fa fa-search-plus"></i><span>Quick view</span></a>
+                    </div>
+                    <div class="content"><h3 class="title">
                             <a href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
-                                <img src="<?php echo $abstractProductBlock->getUrl('pub/media/catalog').'product'.$product->getImage();?>" />
+                                <?php /* @escapeNotVerified */ echo $product->getName() ?>
                             </a>
-                            <a class="btn-quickview" href="#quickviewModal"><i class="fa fa-search-plus"></i><span>Quick view</span></a>
-                        </div>
-                        <div class="content"><h3 class="title">
-                                <a href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
-                                    <?php /* @escapeNotVerified */ echo $product->getName() ?>
-                                </a>
-                            </h3>
-                            <div class="info"><span class="price"><?php echo $abstractProductBlock->getProductPrice($product);?></span>
-                                <ul class="star-rating">
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star-o"></li>
-                                    <li class="fa fa-star-o"></li>
-                                </ul>
-                            </div>
+                        </h3>
+                        <div class="info"><span class="price"><?php echo $abstractProductBlock->getProductPrice($product);?></span>
+                            <ul class="star-rating">
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star-o"></li>
+                                <li class="fa fa-star-o"></li>
+                            </ul>
                         </div>
                     </div>
-                </li>
-            <?php endforeach;?>
+                </div>
+            </li>
+        <?php endforeach;?>
+        <?php foreach ($productIdRoom2 as $productId):?>
+            <?php
+            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $product = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);
+            $abstractProductBlock = $block->getLayout()->createBlock('\Magento\Catalog\Block\Product\AbstractProduct');
+            ?>
+            <li class="col-md-4 col-sm-6">
+                <div class="image-box image-box-1">
+                    <div class="image">
+                        <a href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
+                            <img src="<?php echo $abstractProductBlock->getUrl('pub/media/catalog').'product'.$product->getImage();?>" />
+                        </a>
+                        <a class="btn-quickview" href="#quickviewModal"><i class="fa fa-search-plus"></i><span>Quick view</span></a>
+                    </div>
+                    <div class="content"><h3 class="title">
+                            <a href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
+                                <?php /* @escapeNotVerified */ echo $product->getName() ?>
+                            </a>
+                        </h3>
+                        <div class="info"><span class="price"><?php echo $abstractProductBlock->getProductPrice($product);?></span>
+                            <ul class="star-rating">
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star-o"></li>
+                                <li class="fa fa-star-o"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        <?php endforeach;?>
 
+        <li class="col-md-4 col-sm-6">
+            <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-for-bedroom')->toHtml();?>
+        </li>
+        <li class="col-md-4 col-sm-6">
+            <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-for-kitchen')->toHtml();?>
+        </li>
+        <?php foreach ($productIdRoom3 as $productId):?>
+            <?php
+            $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+            $product = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);
+            $abstractProductBlock = $block->getLayout()->createBlock('\Magento\Catalog\Block\Product\AbstractProduct');
+            ?>
             <li class="col-md-4 col-sm-6">
-                <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-for-bedroom')->toHtml();?>
-            </li>
-            <li class="col-md-4 col-sm-6">
-                <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-for-kitchen')->toHtml();?>
-            </li>
-            <?php foreach ($productIdRoom3 as $productId):?>
-                <?php
-                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-                $product = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);
-                $abstractProductBlock = $block->getLayout()->createBlock('\Magento\Catalog\Block\Product\AbstractProduct');
-                ?>
-                <li class="col-md-4 col-sm-6">
-                    <div class="image-box image-box-1">
-                        <div class="image">
+                <div class="image-box image-box-1">
+                    <div class="image">
+                        <a href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
+                            <img src="<?php echo $abstractProductBlock->getUrl('pub/media/catalog').'product'.$product->getImage();?>" />
+                        </a>
+                        <a class="btn-quickview" href="#quickviewModal"><i class="fa fa-search-plus"></i><span>Quick view</span></a>
+                    </div>
+                    <div class="content"><h3 class="title">
                             <a href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
-                                <img src="<?php echo $abstractProductBlock->getUrl('pub/media/catalog').'product'.$product->getImage();?>" />
+                                <?php /* @escapeNotVerified */ echo $product->getName() ?>
                             </a>
-                            <a class="btn-quickview" href="#quickviewModal"><i class="fa fa-search-plus"></i><span>Quick view</span></a>
-                        </div>
-                        <div class="content"><h3 class="title">
-                                <a href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
-                                    <?php /* @escapeNotVerified */ echo $product->getName() ?>
-                                </a>
-                            </h3>
-                            <div class="info"><span class="price"><?php echo $abstractProductBlock->getProductPrice($product);?></span>
-                                <ul class="star-rating">
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star-o"></li>
-                                    <li class="fa fa-star-o"></li>
-                                </ul>
-                            </div>
+                        </h3>
+                        <div class="info"><span class="price"><?php echo $abstractProductBlock->getProductPrice($product);?></span>
+                            <ul class="star-rating">
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star"></li>
+                                <li class="fa fa-star-o"></li>
+                                <li class="fa fa-star-o"></li>
+                            </ul>
                         </div>
                     </div>
-                </li>
-            <?php endforeach;?>
-        </ul>
-    </div>
-</section><!-- section products / .end-->
+                </div>
+            </li>
+        <?php endforeach;?>
+    </ul>
+</div>

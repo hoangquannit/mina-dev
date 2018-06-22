@@ -2,8 +2,8 @@ var config = {
     map: {
         '*': {
             compressed: 'js/compressed.min',
-            themepunch_revolution: 'js/jquery.themepunch.revolution.min',
-            themepunch_tools: 'js/jquery.themepunch.tools.min',
+            themepunch_revolution: 'js/revolution/js/jquery.themepunch.revolution.min',
+            themepunch_tools: 'js/revolution/js/jquery.themepunch.tools.min',
             revolution_video: 'js/revolution/js/extensions/revolution.extension.video.min',
             revolution_slideanims: 'js/revolution/js/extensions/revolution.extension.slideanims.min',
             revolution_actions: 'js/revolution/js/extensions/revolution.extension.actions.min',
