@@ -1,0 +1,21 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Newsletter\Block\Subscribe $block */
+
+?>
+    <form
+        novalidate
+        action="<?= $block->escapeUrl($block->getFormActionUrl()) ?>"
+        method="post"
+        data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+        id="newsletter-validate-detail">
+        <input class="au-input m-b-20" name="email" type="text" id="newsletter" placeholder="<?= $block->escapeHtmlAttr(__('Enter your email here')) ?>"
+               data-validate="{required:true, 'validate-email':true}" />
+        <input class="au-btn m-l-20 m-b-20" type="submit" value="<?= $block->escapeHtmlAttr(__('Join')) ?>">
+    </form>
