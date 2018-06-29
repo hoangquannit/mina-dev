@@ -34,5 +34,6 @@ require([
             jQuery(this).toggleClass("clicked");
             e.stopPropagation();
         });
+        
     });
 });
