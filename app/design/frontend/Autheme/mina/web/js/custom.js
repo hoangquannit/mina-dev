@@ -2,6 +2,7 @@ require([
     'jquery',
     'accordion',
     'nicescroll',
+    'SmoothScroll',
 ],function($){
     "use strict";
     jQuery(document).ready(function($) {
@@ -84,6 +85,13 @@ require([
                 headerNavbarMobile.slideUp('fast');
                 navbarMobileBtn.removeClass("is-active");
             }
+        });
+
+        /* Scroll Like Mac*/
+        SmoothScroll({
+            keyboardSupport: false,
+            animationTime: 560, // [ms]
+            stepSize: 100 // [px]
         });
 
         // Navbar fixed when scroll

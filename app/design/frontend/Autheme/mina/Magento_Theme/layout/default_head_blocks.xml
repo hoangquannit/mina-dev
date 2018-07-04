@@ -19,9 +19,9 @@
         <css src="css/settings.css" />
         <css src="css/compressed.css" />
         <script src="jquery.js" />
-        <script src="js/custom.js" />
         <script src="bootstrap/js/bootstrap.min.js" />
         <script src="js/slide-custom.js" />
+        <script src="js/custom.js" />
 
     </head>
 </page>

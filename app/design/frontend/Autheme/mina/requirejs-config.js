@@ -11,9 +11,9 @@ var config = {
             revolution_navigation: 'js/revolution/js/extensions/revolution.extension.navigation.min',
             revolution_migration: 'js/revolution/js/extensions/revolution.extension.migration.min',
             revolution_parallax: 'js/revolution/js/extensions/revolution.extension.parallax.min',
-            easeScroll: 'js/jquery.easeScroll',
             nicescroll: 'js/jquery.nicescroll.min',
-            accordion: 'js/jquery.accordion'
+            accordion: 'js/jquery.accordion',
+            SmoothScroll: 'js/SmoothScroll',
 
         }
     },
@@ -28,8 +28,8 @@ var config = {
         revolution_navigation: ['jquery', 'themepunch_tools', 'themepunch_revolution'],
         revolution_migration: ['jquery', 'themepunch_tools', 'themepunch_revolution'],
         revolution_parallax: ['jquery', 'themepunch_tools', 'themepunch_revolution'],
-        easeScroll: ['jquery'],
         nicescroll: ['jquery'],
         accordion: ['jquery'],
+        SmoothScroll: ['jquery'],
     }
 };
