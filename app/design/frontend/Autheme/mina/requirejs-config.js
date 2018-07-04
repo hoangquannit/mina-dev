@@ -14,7 +14,7 @@ var config = {
             nicescroll: 'js/jquery.nicescroll.min',
             accordion: 'js/jquery.accordion',
             SmoothScroll: 'js/SmoothScroll',
-
+            remodal: 'js/remodal.min'
         }
     },
     shim: {
@@ -31,5 +31,6 @@ var config = {
         nicescroll: ['jquery'],
         accordion: ['jquery'],
         SmoothScroll: ['jquery'],
+        remodal: ['jquery'],
     }
 };

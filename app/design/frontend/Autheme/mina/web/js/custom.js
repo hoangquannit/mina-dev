@@ -3,6 +3,7 @@ require([
     'accordion',
     'nicescroll',
     'SmoothScroll',
+    'remodal'
 ],function($){
     "use strict";
     jQuery(document).ready(function($) {
@@ -104,6 +105,10 @@ require([
                 header.removeClass("header-sm pos-fixed");
             }
         });
-        
+
+        // Modal
+        var remodalInst = $('.remodal').remodal();
+
+
     });
 });
