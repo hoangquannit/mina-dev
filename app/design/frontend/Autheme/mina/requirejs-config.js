@@ -1,7 +1,6 @@
 var config = {
     map: {
         '*': {
-            compressed: 'js/compressed.min',
             themepunch_revolution: 'js/revolution/js/jquery.themepunch.revolution.min',
             themepunch_tools: 'js/revolution/js/jquery.themepunch.tools.min',
             revolution_video: 'js/revolution/js/extensions/revolution.extension.video.min',
@@ -12,6 +11,9 @@ var config = {
             revolution_navigation: 'js/revolution/js/extensions/revolution.extension.navigation.min',
             revolution_migration: 'js/revolution/js/extensions/revolution.extension.migration.min',
             revolution_parallax: 'js/revolution/js/extensions/revolution.extension.parallax.min',
+            easeScroll: 'js/jquery.easeScroll',
+            nicescroll: 'js/jquery.nicescroll.min',
+            accordion: 'js/jquery.accordion'
 
         }
     },
@@ -26,6 +28,8 @@ var config = {
         revolution_navigation: ['jquery', 'themepunch_tools', 'themepunch_revolution'],
         revolution_migration: ['jquery', 'themepunch_tools', 'themepunch_revolution'],
         revolution_parallax: ['jquery', 'themepunch_tools', 'themepunch_revolution'],
-        compressed: ['jquery']
+        easeScroll: ['jquery'],
+        nicescroll: ['jquery'],
+        accordion: ['jquery'],
     }
 };
