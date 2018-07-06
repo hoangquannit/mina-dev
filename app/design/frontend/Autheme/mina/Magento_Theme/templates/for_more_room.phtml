@@ -14,6 +14,9 @@
                 $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
                 $product = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);
                 $abstractProductBlock = $block->getLayout()->createBlock('\Magento\Catalog\Block\Product\AbstractProduct');
+
+                $listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
+                $addToCartUrl =  $listBlock->getAddToCartUrl($product);
             ?>
             <li class="col-md-4 col-sm-6">
                 <div class="image-box image-box-1">
@@ -21,7 +24,7 @@
                         <a href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
                             <img src="<?php echo $abstractProductBlock->getUrl('pub/media/catalog').'product'.$product->getImage();?>" />
                         </a>
-                        <a class="btn-quickview" href="#quickviewModal"><i class="fa fa-search-plus"></i><span>Quick view</span></a>
+                        <a class="btn-quickview" href="#qv<?php echo $product->getId();?>"><i class="fa fa-search-plus"></i><span>Quick view</span></a>
                     </div>
                     <div class="content"><h3 class="title">
                             <a href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
@@ -39,6 +42,90 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="quickview-modal single-product remodal" data-remodal-id="qv<?php echo $product->getId();?>">
+                    <button class="remodal-close" data-remodal-action="close" aria-label="Close"></button>
+                    <div class="single-product-detail customScrollbar" data-scroll-cursorcolor="#b9b9b9"
+                         data-scroll-cursorwidth="3px">
+                        <div class="row-cs">
+                            <div class="col-cs-6 product-image-content">
+                                <?php $images = $product->getMediaGalleryImages(); ?>
+                                <?php if(count($images) > 0): ?>
+                                    <div class="owl-carousel" data-carousel-items="1" data-carousel-nav="true" data-carousel-xs="1"
+                                         data-carousel-sm="1" data-carousel-md="1" data-carousel-lg="1"
+                                         data-carousel-animateout="fadeOut" data-carousel-animatein="fadeIn"
+                                         data-carousel-autowidth="false">
+                                        <?php if(count($images) > 1): ?>
+                                            <?php
+                                            $lastId = $images->getFirstItem()->getId();
+                                            $images->removeItemByKey($lastId);
+                                            ?>
+                                        <?php endif;?>
+                                        <?php foreach($images as $child): ?>
+                                            <div class="image-box"><img src="<?php echo $child->getUrl();?>" alt="product detail image" /></div>
+                                        <?php endforeach;?>
+                                    </div>
+                                <?php endif;?>
+                            </div>
+                            <div class="col-cs-6 product-summary">
+                                <h3 class="product-title text-block m-b-10">
+                                    <a class="text-black" href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
+                                        <?php /* @escapeNotVerified */ echo $product->getName() ?>
+                                    </a>
+                                </h3>
+                                <ul class="product-star-rating m-b-5">
+                                    <li class="color"><a class="fa fa-star" href="#"></a></li>
+                                    <li class="color"><a class="fa fa-star" href="#"></a></li>
+                                    <li class="color"><a class="fa fa-star" href="#"></a></li>
+                                    <li class="color"><a class="fa fa-star" href="#"></a></li>
+                                    <li><a class="fa fa-star" href="#"></a></li>
+                                </ul>
+                                <span class="product-price m-b-15"><?php echo $abstractProductBlock->getProductPrice($product);?></span>
+                                <p class="product-short-description m-b-15"><?php echo $product->getShortDescription(); ?></p>
+                                <div class="add-to-wishlist block-contain m-b-40">
+                                    <div class="block-left" data-toggle="tooltip" title="Add to wishlist">
+                                        <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
+                                            <a class="au-btn au-btn-border au-btn-radius btn-add-to-wishlist" href="#"
+                                               data-post='<?php /* @escapeNotVerified */ echo  $listBlock->getAddToWishlistParams($product); ?>'>
+                                                <i class="fa fa-heart"></i><span><?php echo __('ADD TO WISHLIST'); ?></span>
+                                            </a>
+                                        <?php endif;?>
+                                    </div>
+                                    <div class="block-right" data-toggle="tooltip" title="View full details">
+                                        <a title="<?php echo $block->escapeHtml($product->getName()) ?>"
+                                           href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
+                                            <i class="fa fa-arrow-right"></i><span><?php echo __('Go to detail'); ?></span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <form action="<?php echo /* @escapeNotVerified */  $addToCartUrl;?>" method="post"
+                                      id="product_addtocart_form_<?php echo $product->getId();?>" enctype="multipart/form-data">
+                                    <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $product->getId() ?>" />
+                                    <input type="hidden" name="selected_configurable_option" value="" />
+                                    <input type="hidden" name="related_product" id="related-products-field-<?php echo $product->getId();?>" value="" />
+                                    <?= $block->getBlockHtml('formkey') ?>
+                                    <div class="product-select row-cs m-b-20">
+                                        <?php if (!$block->hasOptions()):?>
+                                        <div class="col-cs-6 p-l-5" data-toggle="tooltip" title="Quantity">
+                                            <div class="quantity">
+                                                <span class="decrease"></span>
+                                                <input class="au-input-number"
+                                                       name="qty"
+                                                       id="qty_<?php echo $product->getId();?>"
+                                                       value="<?= /* @escapeNotVerified */ __('1') ?>"
+                                                       title="<?= /* @escapeNotVerified */ __('Qty') ?>"
+                                                       type="number" value="1" min="1" max="100"/>
+                                                <span class="increase"></span></div>
+                                        </div>
+                                    </div>
+                                    <button class="au-btn add-to-cart btn-block m-b-30" type="submit"><?php echo __('ADD TO CART') ?></button>
+                                <?php endif; ?>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </li>
         <?php endforeach;?>
         <?php foreach ($productIdRoom2 as $productId):?>
@@ -46,6 +133,9 @@
             $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
             $product = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);
             $abstractProductBlock = $block->getLayout()->createBlock('\Magento\Catalog\Block\Product\AbstractProduct');
+
+            $listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
+            $addToCartUrl =  $listBlock->getAddToCartUrl($product);
             ?>
             <li class="col-md-4 col-sm-6">
                 <div class="image-box image-box-1">
@@ -53,7 +143,7 @@
                         <a href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
                             <img src="<?php echo $abstractProductBlock->getUrl('pub/media/catalog').'product'.$product->getImage();?>" />
                         </a>
-                        <a class="btn-quickview" href="#quickviewModal"><i class="fa fa-search-plus"></i><span>Quick view</span></a>
+                        <a class="btn-quickview" href="#qv<?php echo $product->getId();?>"><i class="fa fa-search-plus"></i><span>Quick view</span></a>
                     </div>
                     <div class="content"><h3 class="title">
                             <a href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
@@ -68,6 +158,90 @@
                                 <li class="fa fa-star-o"></li>
                                 <li class="fa fa-star-o"></li>
                             </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quickview-modal single-product remodal" data-remodal-id="qv<?php echo $product->getId();?>">
+                    <button class="remodal-close" data-remodal-action="close" aria-label="Close"></button>
+                    <div class="single-product-detail customScrollbar" data-scroll-cursorcolor="#b9b9b9"
+                         data-scroll-cursorwidth="3px">
+                        <div class="row-cs">
+                            <div class="col-cs-6 product-image-content">
+                                <?php $images = $product->getMediaGalleryImages(); ?>
+                                <?php if(count($images) > 0): ?>
+                                    <div class="owl-carousel" data-carousel-items="1" data-carousel-nav="true" data-carousel-xs="1"
+                                         data-carousel-sm="1" data-carousel-md="1" data-carousel-lg="1"
+                                         data-carousel-animateout="fadeOut" data-carousel-animatein="fadeIn"
+                                         data-carousel-autowidth="false">
+                                        <?php if(count($images) > 1): ?>
+                                            <?php
+                                            $lastId = $images->getFirstItem()->getId();
+                                            $images->removeItemByKey($lastId);
+                                            ?>
+                                        <?php endif;?>
+                                        <?php foreach($images as $child): ?>
+                                            <div class="image-box"><img src="<?php echo $child->getUrl();?>" alt="product detail image" /></div>
+                                        <?php endforeach;?>
+                                    </div>
+                                <?php endif;?>
+                            </div>
+                            <div class="col-cs-6 product-summary">
+                                <h3 class="product-title text-block m-b-10">
+                                    <a class="text-black" href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
+                                        <?php /* @escapeNotVerified */ echo $product->getName() ?>
+                                    </a>
+                                </h3>
+                                <ul class="product-star-rating m-b-5">
+                                    <li class="color"><a class="fa fa-star" href="#"></a></li>
+                                    <li class="color"><a class="fa fa-star" href="#"></a></li>
+                                    <li class="color"><a class="fa fa-star" href="#"></a></li>
+                                    <li class="color"><a class="fa fa-star" href="#"></a></li>
+                                    <li><a class="fa fa-star" href="#"></a></li>
+                                </ul>
+                                <span class="product-price m-b-15"><?php echo $abstractProductBlock->getProductPrice($product);?></span>
+                                <p class="product-short-description m-b-15"><?php echo $product->getShortDescription(); ?></p>
+                                <div class="add-to-wishlist block-contain m-b-40">
+                                    <div class="block-left" data-toggle="tooltip" title="Add to wishlist">
+                                        <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
+                                            <a class="au-btn au-btn-border au-btn-radius btn-add-to-wishlist" href="#"
+                                               data-post='<?php /* @escapeNotVerified */ echo  $listBlock->getAddToWishlistParams($product); ?>'>
+                                                <i class="fa fa-heart"></i><span><?php echo __('ADD TO WISHLIST'); ?></span>
+                                            </a>
+                                        <?php endif;?>
+                                    </div>
+                                    <div class="block-right" data-toggle="tooltip" title="View full details">
+                                        <a title="<?php echo $block->escapeHtml($product->getName()) ?>"
+                                           href="<?php /* @escapeNotVerified */ echo $product->getProductUrl() ?>">
+                                            <i class="fa fa-arrow-right"></i><span><?php echo __('Go to detail'); ?></span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <form action="<?php echo /* @escapeNotVerified */  $addToCartUrl;?>" method="post"
+                                      id="product_addtocart_form_<?php echo $product->getId();?>" enctype="multipart/form-data">
+                                    <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $product->getId() ?>" />
+                                    <input type="hidden" name="selected_configurable_option" value="" />
+                                    <input type="hidden" name="related_product" id="related-products-field-<?php echo $product->getId();?>" value="" />
+                                    <?= $block->getBlockHtml('formkey') ?>
+                                    <div class="product-select row-cs m-b-20">
+                                        <?php if (!$block->hasOptions()):?>
+                                        <div class="col-cs-6 p-l-5" data-toggle="tooltip" title="Quantity">
+                                            <div class="quantity">
+                                                <span class="decrease"></span>
+                                                <input class="au-input-number"
+                                                       name="qty"
+                                                       id="qty_<?php echo $product->getId();?>"
+                                                       value="<?= /* @escapeNotVerified */ __('1') ?>"
+                                                       title="<?= /* @escapeNotVerified */ __('Qty') ?>"
+                                                       type="number" value="1" min="1" max="100"/>
+                                                <span class="increase"></span></div>
+                                        </div>
+                                    </div>
+                                    <button class="au-btn add-to-cart btn-block m-b-30" type="submit"><?php echo __('ADD TO CART') ?></button>
+                                <?php endif; ?>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,6 +259,9 @@
             $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
             $product = $objectManager->create('Magento\Catalog\Model\Product')->load($productId);
             $abstractProductBlock = $block->getLayout()->createBlock('\Magento\Catalog\Block\Product\AbstractProduct');
+
+            $listBlock = $objectManager->get('\Magento\Catalog\Block\Product\ListProduct');
+            $addToCartUrl =  $listBlock->getAddToCartUrl($product);
             ?>
             <li class="col-md-4 col-sm-6">
                 <div class="image-box image-box-1">
@@ -148,14 +325,12 @@
                                     <li><a class="fa fa-star" href="#"></a></li>
                                 </ul>
                                 <span class="product-price m-b-15"><?php echo $abstractProductBlock->getProductPrice($product);?></span>
-                                <p class="product-short-description m-b-15">Dimensions (HWD): 204 x 102 x 102cm
-                                    This steel-framed hanging chair is finished in a weather and water-resistant woven
-                                    PU which mimics the look of dark brown</p>
+                                <p class="product-short-description m-b-15"><?php echo $product->getShortDescription(); ?></p>
                                 <div class="add-to-wishlist block-contain m-b-40">
                                     <div class="block-left" data-toggle="tooltip" title="Add to wishlist">
                                         <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
                                             <a class="au-btn au-btn-border au-btn-radius btn-add-to-wishlist" href="#"
-                                               data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($product); ?>'>
+                                               data-post='<?php /* @escapeNotVerified */ echo  $listBlock->getAddToWishlistParams($product); ?>'>
                                                 <i class="fa fa-heart"></i><span><?php echo __('ADD TO WISHLIST'); ?></span>
                                             </a>
                                         <?php endif;?>
@@ -168,7 +343,7 @@
                                     </div>
                                 </div>
 
-                                <form action="<?php echo /* @escapeNotVerified */ $this->getSubmitUrl($product) ?>" method="post"
+                                <form action="<?php echo /* @escapeNotVerified */  $addToCartUrl;?>" method="post"
                                           id="product_addtocart_form_<?php echo $product->getId();?>" enctype="multipart/form-data">
                                         <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $product->getId() ?>" />
                                         <input type="hidden" name="selected_configurable_option" value="" />
