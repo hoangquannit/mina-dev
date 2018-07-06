@@ -1,0 +1,60 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('ADD TO CART'); ?>
+<?php if ($_product->isSaleable()): ?>
+<div class="box-tocart">
+    <div class="fieldset prodcut-add-to-cart">
+        <?php if ($block->shouldRenderQuantity()): ?>
+        <input type="number"
+               name="qty"
+               id="qty"
+               value="<?= /* @escapeNotVerified */ $block->getProductDefaultQty() * 1 ?>"
+               title="<?= /* @escapeNotVerified */ __('Qty') ?>"
+               class="input-size"
+               data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+               />
+        <?php endif; ?>
+            <button type="submit"
+                    title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                    class="au-btn au-btn-primary au-btn-radius btn-add-to-cart"
+                    id="product-addtocart-button">
+                <?= /* @escapeNotVerified */ $buttonTitle ?>
+            </button>
+        <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
+            <a class="au-btn au-btn-border au-btn-radius btn-add-to-wishlist" href="#"
+               data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_product); ?>'>
+                <?php echo __('ADD TO WISHLIST'); ?>
+            </a>
+        <?php endif;?>
+    </div>
+</div>
+<?php endif; ?>
+<?php if ($block->isRedirectToCartEnabled()) : ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/product/view/validation": {
+                "radioCheckboxClosest": ".nested"
+            }
+        }
+    }
+</script>
+<?php else : ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+</script>
+<?php endif; ?>
+<div class="m-b-40"></div>
