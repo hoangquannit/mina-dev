@@ -20,7 +20,10 @@
         <css src="css/compressed.css" />
         <script src="jquery.js" />
         <script src="bootstrap/js/bootstrap.min.js" />
+        <script src="owl.carousel/owl.carousel.min.js" />
         <script src="js/slide-custom.js" />
+        <script src="js/custom.js" />
+        <script src="js/owl-custom.js" />
 
     </head>
 </page>
