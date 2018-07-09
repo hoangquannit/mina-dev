@@ -48,13 +48,23 @@ require([
 </script>
 <?php 
 ?>
-<div class="filter-content filter-by-price-widget-1">
-    <div id="price-slider" class="filter-bar"></div>
+<div class="filter-widget">
+    <h3 class="title text-block text-black text-sm m-b-25">Filter</h3>
+    <div class="filter-block filter-price">
+        <div class="filter-title" data-toggle="collapse" data-target="#price">
+            <span class="text-block">Price</span><span class="icon-plus"></span>
+        </div>
+        <div class="filter-content collapse in" id="price">
+            <div id="price-slider" class="filter-bar"></div>
+            <p class="price-range"><span>Range:</span>
+                <input type="text" id="amount" readonly style="border:0; color:##666; font-weight:400; font-family: 'Montserrat', Arial, 'Helvetica Neue', sans-serif; font-size: 14px; width: 40% ">
+            </p>
+         </div>
     <div class="filter-action">
-        <span class="price">Price: </span><input type="text" id="amount" readonly style="border:0; color:##666; font-weight:400; font-family: 'Montserrat', Arial, 'Helvetica Neue', sans-serif; font-size: 14px; width: 40% ">
         <a class="filter-url-price" href="javascript:void(0)">
-            <button class="au-btn au-btn-radius btn-filter">FILTER</button>
+            <button>FILTER</button>
         </a>
+    </div>
     </div>
 </div>
 <?php else:?>
