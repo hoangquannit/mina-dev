@@ -15,7 +15,7 @@
  */
 use Magento\Catalog\Model\Product\ProductList\Toolbar;
 ?>
-<span><?php echo __('Short By:');?></span>
+<span class="label"><?php echo __('Short By:');?></span>
 <select class="woocommerce-ordering">
     <?php foreach ($block->getAvailableOrders() as $_key => $_order): ?>
         <option value="<?= /* @escapeNotVerified */ $_key ?>"
