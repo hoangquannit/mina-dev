@@ -16,29 +16,25 @@
 ?>
 
 <?php if ($block->canShowBlock()): ?>
-    <div class="m-t-40">
-        <div class="filter-by-price-widget-1">
-            <div class="block-content filter-content">
-                <?= $block->getChildHtml('state') ?>
+    <div class="block-content filter-content">
+        <?= $block->getChildHtml('state') ?>
 
-                <?php if ($block->getLayer()->getState()->getFilters()): ?>
-                    <div class="block-actions filter-actions">
-                        <a href="<?= /* @escapeNotVerified */ $block->getClearUrl() ?>" class="action clear filter-clear"><span><?= /* @escapeNotVerified */ __('Clear All') ?></span></a>
-                    </div>
-                <?php endif; ?>
-                <?php $wrapOptions = false; ?>
-                <?php foreach ($block->getFilters() as $filter): ?>
-                    <?php if (!$wrapOptions): ?>
-                        <dl class="filter-options" id="narrow-by-list">
-                    <?php $wrapOptions = true; endif; ?>
-                        <?php if ($filter->getItemsCount()): ?>
-                            <dd class="filter-options-content"><?= /* @escapeNotVerified */ $block->getChildBlock('renderer')->render($filter) ?></dd>
-                        <?php endif; ?>
-                <?php endforeach; ?>
-                <?php if ($wrapOptions): ?>
-                    </dl>
-                <?php endif; ?>
+        <?php if ($block->getLayer()->getState()->getFilters()): ?>
+            <div class="block-actions filter-actions">
+                <a href="<?= /* @escapeNotVerified */ $block->getClearUrl() ?>" class="action clear filter-clear"><span><?= /* @escapeNotVerified */ __('Clear All') ?></span></a>
             </div>
-        </div>
+        <?php endif; ?>
+        <?php $wrapOptions = false; ?>
+        <?php foreach ($block->getFilters() as $filter): ?>
+            <?php if (!$wrapOptions): ?>
+                <dl class="filter-options" id="narrow-by-list">
+            <?php $wrapOptions = true; endif; ?>
+                <?php if ($filter->getItemsCount()): ?>
+                    <dd class="filter-options-content"><?= /* @escapeNotVerified */ $block->getChildBlock('renderer')->render($filter) ?></dd>
+                <?php endif; ?>
+        <?php endforeach; ?>
+        <?php if ($wrapOptions): ?>
+            </dl>
+        <?php endif; ?>
     </div>
 <?php endif; ?>
