@@ -17,7 +17,7 @@ use Magento\Catalog\Model\Product\ProductList\Toolbar;
 ?>
 <?php if ($block->getLastPageNum() > 1): ?>
         <?php /* @escapeNotVerified */
-            echo 'Showing '.$block->getFirstNum().'-'.$block->getLastNum().' of '. $block->getTotalNum().' results';
+            echo '<span class="found">Showing '.$block->getFirstNum().'-'.$block->getLastNum().' of '. $block->getTotalNum().' results</span>';
         ?>
     <?php elseif ($block->getTotalNum() == 1): ?>
         <?php /* @escapeNotVerified */ echo __('%1 Item',
