@@ -16,14 +16,12 @@
 ?>
 <?php if ($block->getCollection()->getSize()): ?>
     <?php if ($block->getLastPageNum()>1): ?>
-    <div class="pagination-widget-1">
-        <ul class="pagination-list" aria-labelledby="paging-label">
+        <ul class="paginations" aria-labelledby="paging-label">
         <?php if (!$block->isFirstPage()): ?>
             <li class="prev">
                 <?php $text = $block->getAnchorTextForPrevious() ? $block->getAnchorTextForPrevious() : '';?>
                 <a href="<?= /* @escapeNotVerified */ $block->getPreviousPageUrl() ?>" title="<?= /* @escapeNotVerified */ $text ? $text : __('Previous') ?>">
                     <i class="fa fa-angle-left"></i>
-                    <span><?= /* @escapeNotVerified */ $text ? $text : __('Previous') ?></span>
                 </a>
             </li>
         <?php endif;?>
@@ -78,12 +76,10 @@
             <li class="next">
                 <?php $text = $block->getAnchorTextForNext() ? $block->getAnchorTextForNext() : '';?>
                 <a  href="<?= /* @escapeNotVerified */ $block->getNextPageUrl() ?>" title="<?= /* @escapeNotVerified */ $text ? $text : __('Next') ?>">
-                    <span><?= /* @escapeNotVerified */ $text ? $text : __('Next') ?></span>
                     <i class="fa fa-angle-right"></i>
                 </a>
             </li>
         <?php endif;?>
         </ul>
-    </div>
     <?php endif; ?>
 <?php endif ?>
