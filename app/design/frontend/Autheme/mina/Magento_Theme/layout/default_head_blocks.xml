@@ -23,7 +23,7 @@
         <script src="owl.carousel/owl.carousel.min.js" />
         <script src="js/slide-custom.js" />
         <script src="js/custom.js" />
-        <script src="js/owl-custom.js" />
+        <!--<script src="js/owl-custom.js" />-->
 
     </head>
 </page>
