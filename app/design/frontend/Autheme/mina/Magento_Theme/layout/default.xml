@@ -42,10 +42,10 @@
 
 
         <referenceContainer name="footer-container">
-            <container name="footer-top" label="Footer Top" htmlTag="div"  htmlClass="m-b-90" before="-">
-                <block class="Magento\Cms\Block\Block" name="eco-footer-2">
+            <container name="footer-top" label="Footer Top" htmlTag="div"  before="-">
+                <block class="Magento\Cms\Block\Block" name="mina-footer">
                     <arguments>
-                        <argument name="block_id" xsi:type="string">eco-footer-2</argument>
+                        <argument name="block_id" xsi:type="string">mina-footer</argument>
                     </arguments>
                 </block>
             </container>
