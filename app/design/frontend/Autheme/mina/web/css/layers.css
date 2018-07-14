@@ -22,6 +22,10 @@ website:   	http://www.themepunch.com
 	color:#0084B4!important;
 }
 
+.cms-about-us #maincontent{
+	display:none!important;
+}
+
 .tp-caption.Twitter-Content a:hover
 {
 	color:#0084B4!important;
