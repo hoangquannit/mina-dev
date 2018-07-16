@@ -13,25 +13,48 @@
  * @var $block \Magefan\Blog\Block\Sidebar\Recent
  */
 ?>
+<?php
+$objectManager  = \Magento\Framework\App\ObjectManager::getInstance();
+$categoryHelper = $objectManager->get('\Magento\Catalog\Helper\Category');
+$categories     = $categoryHelper->getStoreCategories();
+foreach ($categories as $category):
+    $categoriesStore[] = $category->getId();
+endforeach;
+
+$categoryCollection = $objectManager->get('\Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
+$categories         = $categoryCollection->create()->addAttributeToSelect('*');
+?>
 
 <?php
     $_postCollection = $block->getPostCollection();
 ?>
-<?php if ($_postCollection->count()) { ?>
-<div class="widget block block-recent-posts" data-bind="scope: 'recemt-posts'">
-    <div class="block-title">
-        <strong><?php echo __('Recent Posts') ?></strong>
-    </div>
-    <div class="block-content">
-        <?php foreach ($_postCollection as $_post) { ?>
-            <div class="item">
-                <a class="post-item-link"
-                   href="<?php echo $_post->getPostUrl() ?>">
-                    <?php echo $block->escapeHtml($_post->getTitle()) ?>
-                </a>
-            </div>
 
-        <?php } ?>
+<aside class="blog-with-sidebar">
+    <div class="aside-wrapper">
+        <div class="categories-widget m-b-50">
+            <h3 class="title text-block text-black text-sm m-b-15"><?php echo __('Categories'); ?></h3>
+            <ul class="vertical-list">
+                <?php foreach ($categories as $category):?>
+                    <?php if(in_array($category->getId(), $categoriesStore) AND $category->getProductCount() > 0 ):?>
+                        <li>
+                            <a href="<?php echo $category->getUrl();?>"><?php echo $category->getName(); ?></a>
+                            <span class="totals">(<?php echo $category->getProductCount(); ?>)</span>
+                        </li>
+                    <?php endif;?>
+                <?php endforeach;?>
+            </ul>
+        </div>
+        <?php if ($_postCollection->count()) { ?>
+        <div class="brands-widget m-b-50"><h3 class="title text-block text-black text-sm m-b-15"><?php echo __('Archives'); ?></h3>
+            <ul class="vertical-list">
+                <?php foreach ($_postCollection as $_post) { ?>
+                <li>
+                    <a class="name" href="<?php echo $_post->getPostUrl() ?>"> <?php echo $block->escapeHtml($_post->getTitle()) ?></a>
+                </li>
+                <?php } ?>
+            </ul>
+        </div>
+        <div class="ads-wigdet"><?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-blog-ads')->toHtml();?></div>
     </div>
-</div>
-<?php } ?>
+        <?php } ?>
+</aside>

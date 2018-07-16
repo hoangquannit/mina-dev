@@ -15,7 +15,7 @@
 ?>
 <?php if ($block->getCollection()->getSize()) { ?>
 	<?php $woj = $block->getWidgetOptionsJson() ?>
-    <div class="toolbar-blog-posts" <?php if ($woj) echo 'data-mage-init="'.$woj.'"' ?>>
+    <div class="shop-page-paginations text-center" <?php if ($woj) echo 'data-mage-init="'.$woj.'"' ?>>
         <?php echo $block->getPagerHtml() ?>
     </div>
 <?php } ?>
