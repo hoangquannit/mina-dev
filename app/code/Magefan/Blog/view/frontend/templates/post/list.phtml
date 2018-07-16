@@ -21,36 +21,13 @@ $_postCollection = $block->getPostCollection();
     <div class="message info empty"><div><?php echo __('We can\'t find posts matching the selection.') ?></div></div>
 <?php else: ?>
     <?php echo $block->getAdditionalHtml() ?>
-    <div class="post-list-wrapper">
+    <div class="article-wrapper">
         <?php $iterator = 1; ?>
+        <ul class="blog-list list-reset">
         <?php foreach ($_postCollection as $_post): ?>
-            <?php if ($_post == $_postCollection->getFirstItem()){ ?>
-                <?php $firstItem = $_postCollection->getFirstItem(); ?>
-                <div class="blog-item-1 col-md-12">
-                    <div class="blog-item-image">
-                        <a href="<?php echo $firstItem->getPostUrl() ?>">
-                            <img src="<?php echo $firstItem->getFeaturedImage() ?>" alt="<?php echo $block->escapeHtml($firstItem->getTitle(), null, true) ?>" />
-                        </a>
-                    </div>
-                    <div class="blog-item-title">
-                        <h3 class="title">
-                            <a href="<?php echo $firstItem->getPostUrl() ?>">
-                                <?php echo $block->escapeHtml($firstItem->getTitle(), null, true) ?>
-                            </a>
-                        </h3>
-                    </div>
-                    <p class="blog-item-date">
-                        <i class="fa fa-clock-o"></i>
-                        <span><?php echo date_format(new DateTime($firstItem->getPublishDate()),"F d, Y"); ?></span>
-                    </p>
-                    <p class="blog-item-content">
-                        <?php echo $firstItem->getShortContent() ?>
-                    </p>
-                </div>
-            <?php }else{ ?>
-                <?php echo $block->getPostHtml($_post) ?>
-            <?php } ?>
+            <li><?php echo $block->getPostHtml($_post) ?></li>
         <?php endforeach; ?>
+        </ul>
     </div>
 
     <?php echo $block->getToolbarHtml() ?>

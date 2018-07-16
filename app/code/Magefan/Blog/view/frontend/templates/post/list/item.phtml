@@ -17,29 +17,22 @@
     $_post = $this->getPost();
     $_postUrl = $_post->getPostUrl();
     $_postName = $block->escapeHtml($_post->getTitle(), null, true);
-?>
 
-<div class="col-md-6">
-    <!-- .blog-item-1-->
-    <div class="blog-item-1">
-        <?php if ($featuredImage = $_post->getFeaturedImage()) { ?>
-            <div class="blog-item-image">
-                <a href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
-                    <img src="<?php echo $featuredImage ?>" alt="<?php echo $_postName ?>" />
-                </a>
-            </div>
-        <?php } ?>
-        <div class="blog-item-title">
-            <h3 class="title">
-                <a href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
-                    <?php echo $_postName ?>
-                </a>
-            </h3>
+?>
+<div class="image-box image-box-6 image-box-6--large">
+    <?php if ($featuredImage = $_post->getFeaturedImage()) { ?>
+        <div class="image">
+            <a href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
+                <img src="<?php echo $featuredImage ?>" alt="<?php echo $_postName ?>" />
+            </a>
         </div>
-        <p class="blog-item-date">
-            <i class="fa fa-clock-o"></i>
-            <span><?php echo date_format(new DateTime($_post->getPublishDate()),"F d, Y"); ?></span>
-        </p>
+    <?php } ?>
+    <div class="content"><span class="date"><?php echo date_format(new DateTime($_post->getPublishDate()),"F d, Y"); ?></span>
+        <h3 class="title">
+            <a href="<?php echo $_postUrl ?>" title="<?php echo $_postName ?>">
+                <?php echo $_postName ?>
+            </a></h3>
+        <p class="textbox"><?php echo $_post->getShortContent() ?></p>
+        <a class="text-hover-animate read-more" href="<?php echo $_postUrl ?>">Read more</a>
     </div>
-    <!-- end .blog-item-1-->
 </div>
