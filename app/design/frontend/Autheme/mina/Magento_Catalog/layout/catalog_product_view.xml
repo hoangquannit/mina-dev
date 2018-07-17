@@ -13,11 +13,6 @@
     <update handle="page_calendar"/>
     <body>
     	<referenceContainer name="content">
-        	<block class="Magento\Cms\Block\Block" name="eco-other-products" after="-">
-                <arguments>
-                    <argument name="block_id" xsi:type="string">eco-other-products</argument>
-                </arguments>
-            </block>
             <container name="product.info.main" htmlTag="div" htmlClass="product-info-main product-detail-content-1 col-md-5" before="-">
                 <container name="product.info.price" label="Product info auxiliary container" htmlTag="div" htmlClass="product-info-price">
                     <block class="Magento\Catalog\Pricing\Render" name="product.price.final">
@@ -120,6 +115,7 @@
         </referenceContainer>
         <move element="page.main.title" destination="product.info.main" before="product.info.overview"/>
         <move element="product.info.details" destination="product.info.main" after="-"/>
+        <move element="catalog.product.related" destination="content" after="-" />
         <referenceBlock name="catalog.compare.sidebar" remove="true"/>
         <referenceBlock name="wishlist_sidebar" remove="true"/>
         <referenceBlock name="product.info.addto" remove="true"/>
