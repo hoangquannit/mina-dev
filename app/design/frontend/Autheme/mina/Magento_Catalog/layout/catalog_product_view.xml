@@ -114,7 +114,6 @@
             </container>
         </referenceContainer>
         <move element="page.main.title" destination="product.info.main" before="product.info.overview"/>
-        <move element="product.info.details" destination="product.info.main" after="-"/>
         <move element="catalog.product.related" destination="content" after="-" />
         <referenceBlock name="catalog.compare.sidebar" remove="true"/>
         <referenceBlock name="wishlist_sidebar" remove="true"/>
