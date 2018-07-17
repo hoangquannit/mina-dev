@@ -18,8 +18,8 @@
     $_postUrl = $_post->getPostUrl();
     $_postName = $block->escapeHtml($_post->getTitle(), null, true);
 ?>
-<div class="post-view m-t-20">
-    <div class="post-holder blog-post-1 post-holder-<?php echo $_post->getId() ?>">
+<div class="post-view m-t-20 blog-with-sidebar">
+    <div class=" article-wrapper article-blog post-holder blog-post-1 post-holder-<?php echo $_post->getId() ?>">
         <?php if ($featuredImage = $_post->getFeaturedImage()) { ?>
             <div class="blog-post-cover">
                 <img src="<?php echo $featuredImage ?>" alt="<?php echo $_postName ?>" />
