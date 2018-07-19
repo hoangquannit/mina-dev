@@ -9,33 +9,44 @@
 /** @var $block \Magento\Catalog\Block\Product\View */
 ?>
 <?php $_product = $block->getProduct(); ?>
-<?php $buttonTitle = __('ADD TO CART'); ?>
+<?php $buttonTitle = __('Add to cart'); ?>
 <?php if ($_product->isSaleable()): ?>
-<div class="box-tocart">
-    <div class="fieldset prodcut-add-to-cart">
+<?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
+<div class="product-summary">
+    <a class="add-to-wishlist m-b-40" href="#"
+       data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_product); ?>'>
+        <div class="block-inline" data-toggle="tooltip" title="<?php echo __('Add to wishlist'); ?>">
+            <i class="fa fa-heart"></i><span><?php echo __('Add to wishlist'); ?></span>
+        </div>
+    </a>
+</div>
+<?php endif;?>
+<div class="product-summary">
+    <div class="product-select row-cs m-b-20">
         <?php if ($block->shouldRenderQuantity()): ?>
-        <input type="number"
-               name="qty"
-               id="qty"
-               value="<?= /* @escapeNotVerified */ $block->getProductDefaultQty() * 1 ?>"
-               title="<?= /* @escapeNotVerified */ __('Qty') ?>"
-               class="input-size"
-               data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
-               />
+        <div class="col-cs-6 p-l-5">
+            <div class="quantity" data-toggle="tooltip" title="Quantity"><span
+                    class="decrease"></span>
+                <input type="number"
+                       name="qty"
+                       id="qty"
+                       value="<?= /* @escapeNotVerified */ $block->getProductDefaultQty() * 1 ?>"
+                       title="<?= /* @escapeNotVerified */ __('Qty') ?>"
+                       class="au-input-number"
+                       data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                       />
+                <span class="increase"></span>
+            </div>
+        </div>
         <?php endif; ?>
+    </div>
             <button type="submit"
                     title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
-                    class="au-btn au-btn-primary au-btn-radius btn-add-to-cart"
+                    class="au-btn add-to-cart btn-block m-b-30"
                     id="product-addtocart-button">
                 <?= /* @escapeNotVerified */ $buttonTitle ?>
             </button>
-        <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
-            <a class="au-btn au-btn-border au-btn-radius btn-add-to-wishlist" href="#"
-               data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_product); ?>'>
-                <?php echo __('ADD TO WISHLIST'); ?>
-            </a>
-        <?php endif;?>
-    </div>
+
 </div>
 <?php endif; ?>
 <?php if ($block->isRedirectToCartEnabled()) : ?>
