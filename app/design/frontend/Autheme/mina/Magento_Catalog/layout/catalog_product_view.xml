@@ -113,10 +113,12 @@
                 </block>
             </container>
         </referenceContainer>
-        <move element="page.main.title" destination="product.info.main" before="product.info.overview"/>
+        <move element="product.info.price" destination="product.info.main" before="product.info.overview"/>
+        <move element="page.main.title" destination="product.info.main" before="-"/>
         <move element="catalog.product.related" destination="content" after="-" />
         <referenceBlock name="catalog.compare.sidebar" remove="true"/>
         <referenceBlock name="product.info.addto" remove="true"/>
+        <referenceBlock name="product.info.stock.sku" remove="true"/>
         <referenceBlock name="product.info.mailto" remove="true"/>
     </body>
 </page>

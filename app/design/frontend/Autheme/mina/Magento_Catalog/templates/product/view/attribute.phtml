@@ -32,7 +32,7 @@ if ($_attributeType && $_attributeType == 'text') {
 }
 ?>
 
-<?php if ($_attributeValue): ?>
+<?php if ($_attributeValue AND $_code=='short_description'): ?>
 <div class="product-summary">
     <p class="product-short-description m-b-15">
         <?= /* @escapeNotVerified */ $_attributeValue ?>
