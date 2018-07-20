@@ -1,4 +1,4 @@
-require([
+define([
     'jquery',
     'accordion',
     'nicescroll',
@@ -13,7 +13,7 @@ require([
 
         // Navbar menu dropdown
 
-        var customScrollbar = $(".customScrollbar");
+        var customScrollbar = jQuery(".customScrollbar");
 
         customScrollbar.each(function () {
             var option = {
@@ -32,7 +32,7 @@ require([
                 }
             }
 
-            $(this).niceScroll({
+            jQuery(this).niceScroll({
                 cursorcolor: option.cursorcolor,
                 cursorwidth: option.cursorwidth,
                 cursorborder: option.cursorborder,
@@ -46,20 +46,20 @@ require([
         var btnDropdown = jQuery('.js-navbar').find('.navbar-menu i');
 
         btnDropdown.on('click', function (e) {
-            $(this).siblings('.drop-menu').slideToggle('fast', function () {
+            jQuery(this).siblings('.drop-menu').slideToggle('fast', function () {
                 customScrollbar.getNiceScroll().resize();
             });
-            $(this).siblings('a').toggleClass('active');
-            $(this).toggleClass('clicked');
+            jQuery(this).siblings('a').toggleClass('active');
+            jQuery(this).toggleClass('clicked');
             e.stopPropagation();
         });
 
         // Navbar vertial and Navbar mobile
-        var headerNavbar = $('.header-navbar');
-        var headerNavbarMobile = $('.header-navbar-mobile');
-        var navbarMobileBtn = $('.js-toggle-navbar-mobile');
-        var navbarBtn = $('.js-toggle-navbar');
-        var btnCloseNavbar = $('.js-close-navbar');
+        var headerNavbar = jQuery('.header-navbar');
+        var headerNavbarMobile = jQuery('.header-navbar-mobile');
+        var navbarMobileBtn = jQuery('.js-toggle-navbar-mobile');
+        var navbarBtn = jQuery('.js-toggle-navbar');
+        var btnCloseNavbar = jQuery('.js-close-navbar');
 
         navbarBtn.on('click', function () {
             headerNavbar.toggleClass('opened');
@@ -67,19 +67,19 @@ require([
 
         navbarMobileBtn.on('click', function () {
             headerNavbarMobile.slideToggle('fast');
-            $(this).toggleClass("is-active");
+            jQuery(this).toggleClass("is-active");
         });
 
         btnCloseNavbar.on('click', function () {
             headerNavbar.toggleClass('opened');
         });
 
-        $(window).on('scroll', function (event) {
+        jQuery(window).on('scroll', function (event) {
             headerNavbar.removeClass('opened');
         });
 
 
-        $(window).on('click', function (event) {
+        jQuery(window).on('click', function (event) {
             if (!$(event.target).closest(headerNavbar).length && !$(event.target).closest(navbarBtn).length && headerNavbar.hasClass('opened')) {
                 headerNavbar.removeClass('opened');
             }
@@ -89,7 +89,7 @@ require([
             }
         });
 
-        var owlSelector = $('.owl-carousel');
+        var owlSelector = jQuery('.owl-carousel');
         owlSelector.each(function () {
             var option = {
                 items : 3,
@@ -114,14 +114,14 @@ require([
 
             for (var k in option) {
                 if (option.hasOwnProperty(k)) {
-                    if ($(this).attr('data-carousel-' + k) != null) {
-                        option[k] =  $(this).data('carousel-' + k);
+                    if (jQuery(this).attr('data-carousel-' + k) != null) {
+                        option[k] =  jQuery(this).data('carousel-' + k);
                     }
                 }
             }
 
 
-            $(this).owlCarousel({
+            jQuery(this).owlCarousel({
                 margin: option.margin,
                 loop: option.loop,
                 center: option.center,
@@ -168,10 +168,10 @@ require([
         });
 
         // Navbar fixed when scroll
-        var header = $(".js-header");
+        var header = jQuery(".js-header");
         var headerOffset = header.data('scroll-offset');
         jQuery(window).scroll(function () {
-            if ($(this).scrollTop() > headerOffset) {
+            if (jQuery(this).scrollTop() > headerOffset) {
                 header.addClass('header-sm pos-fixed');
             } else {
                 header.removeClass("header-sm pos-fixed");
@@ -179,7 +179,7 @@ require([
         });
 
         // Modal
-        var remodalInst = $('.remodal').remodal();
+        var remodalInst = jQuery('.remodal').remodal();
 
 
     });

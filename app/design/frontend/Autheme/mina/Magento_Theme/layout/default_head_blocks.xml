@@ -21,9 +21,6 @@
         <script src="jquery.js" />
         <script src="bootstrap/js/bootstrap.min.js" />
         <script src="owl.carousel/owl.carousel.min.js" />
-        <script src="js/slide-custom.js" />
-        <script src="js/custom.js" />
-
     </head>
 </page>
  

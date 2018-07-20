@@ -1,4 +1,7 @@
 var config = {
+    deps: [
+        "js/custom"
+    ],
     map: {
         '*': {
             themepunch_revolution: 'js/revolution/js/jquery.themepunch.revolution.min',
