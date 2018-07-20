@@ -8,7 +8,7 @@
 
 ?>
 <?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')):?>
-    <div class="product info detailed">
+    <div class="product info detailed single-product">
         <?php $layout = $block->getLayout(); ?>
         <ul class="single-product-tabs" data-mage-init='{"tabs":{"openedState":"active"}}'>
             <?php foreach ($detailedInfoGroup as $name):?>
