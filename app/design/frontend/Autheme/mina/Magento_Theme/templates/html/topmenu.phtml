@@ -17,6 +17,9 @@
 <?php
     $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
     $request = $objectManager->get('Magento\Framework\App\Action\Context')->getRequest();
+    if($request->getFullActionName() == 'catalog_product_view') {
+        echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-banner-product-view')->toHtml();
+    }
 ?>
 <nav class="navigation" data-action="navigation">
     <?php if($request->getFullActionName() == 'cms_index_index'):
