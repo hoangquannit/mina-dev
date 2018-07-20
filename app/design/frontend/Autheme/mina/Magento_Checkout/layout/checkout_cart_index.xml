@@ -31,9 +31,9 @@
         <referenceContainer name="content">
             <block class="Magento\Checkout\Block\Cart" name="checkout.cart" template="Magento_Checkout::cart.phtml" cacheable="false">
                 <container name="checkout.cart.items" as="with-items">
-                    <container name="checkout.cart.container" htmlTag="div" htmlClass="cart-container shopping-cart-1 p-t-40 p-b-90" before="-">
+                    <container name="checkout.cart.container" htmlTag="div" htmlClass="page-content p-t-70 p-b-100" before="-">
                         <container name="checkout.cart.form.before" as="form_before" label="Shopping Cart Items Before" htmlTag="div" htmlClass="rewards"/>
-                        <container name="cart.summary" label="Cart Summary Container" htmlTag="table" htmlClass="cart-summary table-bordered" after="-">
+                        <container name="cart.summary" label="Cart Summary Container" htmlTag="table" htmlClass="woo-cart-form-coupon" after="-">
                             <block class="Magento\Checkout\Block\Cart\Shipping" name="checkout.cart.shipping" as="shipping" template="Magento_Checkout::cart/shipping.phtml">
                                 <arguments>
                                     <argument name="jsLayout" xsi:type="array">
