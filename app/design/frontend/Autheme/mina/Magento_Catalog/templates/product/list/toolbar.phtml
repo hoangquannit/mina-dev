@@ -1,0 +1,41 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ */
+use Magento\Catalog\Model\Product\ProductList\Toolbar;
+?>
+
+<?php if ($block->getCollection()->getSize()): ?>
+    <div class="shop-toolbar m-b-15 p-t-50" data-mage-init='<?= /* @escapeNotVerified */ $block->getWidgetOptionsJson() ?>'>
+        <div class="row">
+            <!-- .sort-widget-1-->
+            <div class="col-md-3 col-xs-6 toolbar-left">
+                <?php if ($block->isExpanded()): ?>
+                    <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/sorter.phtml')) ?>
+                <?php endif; ?>
+            </div>
+
+            <div class="toolbar-right">
+                <?php if ($block->isExpanded()): ?>
+                    <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/viewmode.phtml')) ?>
+                    <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/amount.phtml')) ?>
+                <?php endif; ?>
+            </div>
+        </div>
+        <div class="shop-page-paginations text-center">
+            <!-- .pagination-widget-1-->
+            <?= $block->getPagerHtml() ?>
+        </div>
+    </div>
+<?php endif ?>

@@ -1,0 +1,71 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to cart'); ?>
+<?php if ($_product->isSaleable()): ?>
+<?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
+<div class="product-summary">
+    <a class="add-to-wishlist m-b-40" href="#"
+       data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_product); ?>'>
+        <div class="block-inline" data-toggle="tooltip" title="<?php echo __('Add to wishlist'); ?>">
+            <i class="fa fa-heart"></i><span><?php echo __('Add to wishlist'); ?></span>
+        </div>
+    </a>
+</div>
+<?php endif;?>
+<div class="product-summary">
+    <div class="product-select row-cs m-b-20">
+        <?php if ($block->shouldRenderQuantity()): ?>
+        <div class="col-cs-6 p-l-5">
+            <div class="quantity" data-toggle="tooltip" title="Quantity"><span
+                    class="decrease"></span>
+                <input type="number"
+                       name="qty"
+                       id="qty"
+                       value="<?= /* @escapeNotVerified */ $block->getProductDefaultQty() * 1 ?>"
+                       title="<?= /* @escapeNotVerified */ __('Qty') ?>"
+                       class="au-input-number"
+                       data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                       />
+                <span class="increase"></span>
+            </div>
+        </div>
+        <?php endif; ?>
+    </div>
+            <button type="submit"
+                    title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                    class="au-btn add-to-cart btn-block m-b-30"
+                    id="product-addtocart-button">
+                <?= /* @escapeNotVerified */ $buttonTitle ?>
+            </button>
+
+</div>
+<?php endif; ?>
+<?php if ($block->isRedirectToCartEnabled()) : ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/product/view/validation": {
+                "radioCheckboxClosest": ".nested"
+            }
+        }
+    }
+</script>
+<?php else : ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+</script>
+<?php endif; ?>
+<div class="m-b-40"></div>

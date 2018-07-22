@@ -1,0 +1,32 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+
+<div>
+    <!-- .product-detail-image-1-->
+    <div class="product-image-content m-b-30">
+        <div class="owl-carousel" data-carousel-items="1" data-carousel-dotsData="true"
+             data-carousel-nav="true" data-carousel-dots="true" data-carousel-xs="1"
+             data-carousel-sm="1" data-carousel-md="1" data-carousel-lg="1"
+             data-carousel-animateout="fadeOut" data-carousel-animatein="fadeIn" >
+            <?php foreach($block->getGalleryImages() as $image): ?>
+                <?php if(!$block->isMainImage($image)):?>
+                <img data-dot="&lt;img src='<?php echo $image->getData('medium_image_url') ?>'&gt;" src="<?php echo $image->getData('medium_image_url') ?>" alt="product detail image" />
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <!-- end .product-detail-image-1-->
+</div>
+
