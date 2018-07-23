@@ -16,12 +16,12 @@
           data-mage-init='{"validation":{}}'
           class="form form-cart">
     <?= $block->getBlockHtml('formkey') ?>
-    <div class="cart table-wrapper<?= $mergedCells == 2 ? ' detailed' : '' ?>">
+    <div class="cart table-wrapper<?= $mergedCells == 2 ? ' detailed' : '' ?> woo-shopping-cart">
         <?php if ($block->getPagerHtml()): ?>
             <div class="cart-products-toolbar cart-products-toolbar-top toolbar" data-attribute="cart-products-toolbar-top"><?= $block->getPagerHtml() ?></div>
         <?php endif ?>
         <table id="shopping-cart-table"
-               class="cart items data table shop_table shop_table_responsive cart table-bordered shopping-cart-content"
+               class="cart items data table shop_table shop_table_responsive cart table-bordered woo-cart-form-content"
                data-mage-init='{"shoppingCart":{"emptyCartButton": "action.clear",
                "updateCartActionContainer": "#update_cart_action_container"}}'>
             <caption role="heading" aria-level="2" class="table-caption"><?= /* @escapeNotVerified */ __('Shopping Cart Items') ?></caption>

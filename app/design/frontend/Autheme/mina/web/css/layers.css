@@ -2596,6 +2596,31 @@ website:   	http://www.themepunch.com
 
 .cart-totals { border-top:none!important;}
 
+.shopping-cart-checkout-button .action.primary{
+	padding: 17px 50px!important;
+	background: #333!important;
+	color: #fff!important;
+	font-size: 14px!important;
+}
+
+.shopping-cart-checkout-button td{
+	border-right: 1px solid #e5e5e5!important;
+}
+
+table.woo-cart-form-coupon{
+	border-top: 1px solid #e5e5e5!important;
+}
+
+.product-thumbnail1{
+	padding-left: 40px!important;
+}
+
+.woo-shopping-cart .woo-cart-form-cart-item td{
+	border: none!important;
+	vertical-align: middle!important;
+}
+
+
 .tp-caption.BigBold-Title,
 .BigBold-Title {
     color: rgba(255, 255, 255, 1.00);
