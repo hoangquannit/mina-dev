@@ -181,6 +181,17 @@ define([
         // Modal
         var remodalInst = jQuery('.remodal').remodal();
 
+        /*accordion*/
+        var accordion_select = jQuery('.accordion');
+        if (accordion_select) {
+            accordion_select.each(function () {
+                jQuery(this).accordion({
+                    "transitionSpeed": 400,
+                    transitionEasing: 'ease-in-out'
+                });
+            });
+        }
+
 
     });
 });
