@@ -2537,7 +2537,64 @@ website:   	http://www.themepunch.com
     
     border-radius: 0px;
 }
+.actions .woo-cart-form-coupon{
+	border-left: none!important;
+	border-right: none!important;
+}
 
+.woo-cart-form-coupon .actions{
+	padding: 11px 0!important;
+}
+
+.woo-cart-form-shipping-calculator #shipping-zip-form .field span{
+	display: none;
+}
+
+.woo-cart-form-shipping-calculator div[name="shippingAddress.country_id"],
+.woo-cart-form-shipping-calculator div[name="shippingAddress.region_id"]{
+	width: 48.8%;
+	float: left;
+	margin-right: 10px;
+}
+
+.woo-cart-form-shipping-calculator div[name="shippingAddress.country_id"] .select,
+.woo-cart-form-shipping-calculator div[name="shippingAddress.region_id"] .select {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px !important;
+	border: 1px solid #999 !important;
+	padding: 15px !important;
+	height: 100% !important;
+}
+
+.woo-cart-form-shipping-calculator div[name="shippingAddress.postcode"] .input-text,
+.woo-cart-form-shipping-calculator div[name="shippingAddress.region"] .input-text {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px!important;
+	border: 1px solid #999!important;
+	padding: 15px!important;
+	height: 100%!important;
+	width: 98.8%;
+	margin-top: 15px;
+}
+
+#shipping-zip-form .au-select {
+	padding: 10px 0px!important;
+}
+
+.woo-cart-form-shipping-calculator{
+	border-left: none!important;
+	border-right: none!important;
+}
+
+.shopping-cart-footer tbody tr,
+.shopping-cart-footer tbody tr th,
+.shopping-cart-footer tbody tr td {
+	border: none!important;
+}
+
+.cart-totals { border-top:none!important;}
 
 .tp-caption.BigBold-Title,
 .BigBold-Title {
