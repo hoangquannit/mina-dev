@@ -5,8 +5,25 @@
 <?php if ($request->getFullActionName() == 'cms_index_index' AND $block->getLayout()->getBlock('page.main.title')->getPageTitle() == 'Home Page'):?>
 	<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-nav1')->toHtml();?>
 <?php else: ?>
-	<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-nav2')->toHtml();?>
-	<div class="cart-header2">
-	    <?php echo $this->getChildHtml('minicart'); ?>
+	<div class="section section-header section-header-1 pos-absolute bg-white hidden-tablet-landscape js-header"
+		 data-scroll-offset="300">
+		<div class="container">
+			<div class="header-main block-contain">
+				<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-nav2')->toHtml();?>
+				<div class="block-right">
+					<div class="mini-cart">
+						<button class="js-btn-cart btn-cart" data-toggle="tooltip" title="Shopping cart"><span
+								class="totals"><?php echo $this->getChildHtml('minicart'); ?></span>
+							<i class="fa fa-shopping-cart"></i>
+						</button>
+					</div>
+					<div class="search-box">
+						<button class="js-btn-search fa fa-search" data-toggle="tooltip" title="Search"></button>
+						<div class="input-holder animated"><input type="text" placeholder="Search..."></div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
+	<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-nav2-mobile')->toHtml();?>
 <?php endif;?>
