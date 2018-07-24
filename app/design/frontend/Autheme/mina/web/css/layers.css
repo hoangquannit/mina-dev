@@ -206,6 +206,22 @@ website:   	http://www.themepunch.com
 	text-shadow:none;
 }
 
+.head-mini-shopcart{ display: none!important;}
+.minicart-wrapper .ui-dialog .ui-dialog-content {
+	position: absolute!important;
+	width: 301px;
+	background-color: #fff;
+	padding: 15px;
+	position: absolute;
+	right: 0;
+	z-index: 99999;
+	margin-top: 50px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid #e6e6e6;
+}
+
 .tp-caption.modern_big_redbg,.modern_big_redbg
 {
 	background-color:#de543e;
