@@ -192,6 +192,23 @@ define([
             });
         }
 
+        function miniCart() {
+            jQuery(".minicart-wrapper .count-item-mini-cart").appendTo(".js-btn-cart .totals");
+            jQuery(".cart-header2 .minicart-wrapper").appendTo(".mini-cart .mini-shopcart");
+        }
+
+        function clickMiniCart() {
+            jQuery('.js-btn-cart').click(function () {
+                jQuery('.minicart-wrapper .mage-dropdown-dialog').toggle();
+            });
+        }
+
+        if (jQuery('.minicart-wrapper .count-item-mini-cart').length > 0) {
+            setTimeout(miniCart, 10000);
+            setTimeout(clickMiniCart, 10000);
+        }
+
+
 
     });
 });

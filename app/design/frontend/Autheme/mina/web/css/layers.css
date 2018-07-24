@@ -223,6 +223,14 @@ website:   	http://www.themepunch.com
 	text-shadow:none;
 }
 
+.js-btn-cart:hover{
+	background: none!important;
+	border: none!important;
+}
+
+.js-btn-cart:active{
+	box-shadow: none!important;
+}
 .tp-caption.modern_small_text_dark,.modern_small_text_dark
 {
 	border-style:none;

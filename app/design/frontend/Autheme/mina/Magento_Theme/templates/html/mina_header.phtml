@@ -6,4 +6,7 @@
 	<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-nav1')->toHtml();?>
 <?php else: ?>
 	<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-nav2')->toHtml();?>
+	<div class="cart-header2">
+	    <?php echo $this->getChildHtml('minicart'); ?>
+	</div>
 <?php endif;?>
