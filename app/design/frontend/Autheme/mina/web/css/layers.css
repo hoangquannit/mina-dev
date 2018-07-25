@@ -49,6 +49,10 @@ website:   	http://www.themepunch.com
 	white-space:nowrap;
 }
 
+.iwd_main_wrapper .iwd_opc_field[type="password"]:not(:placeholder-shown),
+.iwd_main_wrapper .field[type="password"]:not(:placeholder-shown){
+	height: 54px!important;
+}
 .tp-caption.small_text,.small_text
 {
 	border-style:none;
@@ -265,6 +269,22 @@ website:   	http://www.themepunch.com
 	text-shadow:none;
 	white-space:nowrap;
 }
+
+
+.iwd_main_wrapper .iwd_opc_field.iwd_opc_input,
+.iwd_main_wrapper .field.iwd_opc_input,
+.iwd_main_wrapper .iwd_opc_field .input-text,
+.iwd_main_wrapper .field .input-text,
+.iwd_main_wrapper .iwd_opc_field textarea,
+.iwd_main_wrapper .field textarea,
+.iwd_main_wrapper .iwd_opc_field
+.iwd_opc_hosted_field, .iwd_main_wrapper
+.field .iwd_opc_hosted_field,
+.iwd_main_wrapper .iwd_opc_field.iwd_opc_textarea,
+.iwd_main_wrapper .field.iwd_opc_textarea{
+	border: 1px solid #999!important;
+}
+
 
 .tp-caption.boxshadow,.boxshadow
 {		
