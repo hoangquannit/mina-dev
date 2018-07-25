@@ -202,6 +202,25 @@ define([
             });
         }
 
+        // Tooltip
+        jQuery('[data-toggle="tooltip"]').tooltip();
+
+        /*Search box1*/
+        var searchBox = jQuery('.search-box'),
+            searchBtn = jQuery('.search-box .js-btn-search'),
+            searchInput = jQuery('.search-box .input-holder');
+
+        searchBtn.on('click', function () {
+            searchBox.toggleClass('search-box-open');
+            if (searchInput.hasClass('fadeInUp')) {
+                searchInput.removeClass('fadeInUp').addClass('fadeOutDown');
+            } else if (searchInput.hasClass('fadeOutDown')) {
+                searchInput.removeClass('fadeOutDown').addClass('fadeInUp');
+            } else {
+                searchInput.addClass('fadeInUp');
+            }
+        });
+
 
     });
 });
