@@ -13,6 +13,23 @@
         <css src="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" src_type="url"/>
     </head>
     <body>
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Home</item>
+                    <item name="label" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">/</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">Checkout Page</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string">Checkout Page</item>
+                    <item name="label" xsi:type="string">Checkout Page</item>
+                </argument>
+            </action>
+        </referenceBlock>
         <referenceBlock name="page.main.title" remove="true"/>
         <referenceBlock name="checkout.root">
             <action method="setTemplate">
