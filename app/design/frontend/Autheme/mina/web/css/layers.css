@@ -222,6 +222,11 @@ website:   	http://www.themepunch.com
 	border: 1px solid #e6e6e6;
 }
 
+.minicart-wrapper {
+	float: none!important;
+	margin-left: 0!important;
+}
+
 .tp-caption.modern_big_redbg,.modern_big_redbg
 {
 	background-color:#de543e;
