@@ -15,13 +15,7 @@
 
 <div data-block="minicart" class="minicart-wrapper cart">
     <a class="showcart" href="<?= /* @escapeNotVerified */ $block->getShoppingCartUrl() ?>"
-       data-bind="scope: 'minicart_content'">
-        <?php if($request->getFullActionName() == 'cms_index_index'):?>
-            <span data-bind="html: getCartParam('subtotal')"></span>
-            <i class="fa fa-shopping-cart"></i>
-        <?php else: ?>
-            <span class="count-item-mini-cart" data-bind="html: getCartParam('summary_count')"></span>
-        <?php endif; ?>
+       data-bind="scope: 'minicart_content'"><span class="count-item-mini-cart" data-bind="html: getCartParam('summary_count')"></span>
     </a>
     <?php if ($block->getIsNeedToDisplaySideBar()): ?>
         <div class="block block-minicart empty "

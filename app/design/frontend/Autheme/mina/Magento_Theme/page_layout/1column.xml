@@ -34,7 +34,7 @@
 
         <container name="eco-massbottom3-home4" as="eco-massbottom3-home4" label="Subscribe homepage 4" htmlTag="section" after="eco-massbottom2"/>
 
-        <container name="mina-about-us-page" as="mina-about-us-page" label="About us page" htmlTag="section" before="main.content"/>
+        <container name="mina-about-us-page01" as="mina-about-us-page01" label="About us page" htmlTag="section" before="main.content"/>
 
         <container name="footer-container" as="footer" before="before.body.end" label="Page Footer Container" htmlTag="footer" htmlClass="page-footer" />
     </referenceContainer>

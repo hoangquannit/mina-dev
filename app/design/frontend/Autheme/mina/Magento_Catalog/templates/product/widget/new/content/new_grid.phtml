@@ -24,8 +24,6 @@ if ($exist = ($block->getProductCollection() && $block->getProductCollection()->
     $image = 'new_products_content_widget_grid';
     $title = __('OUR PRODUCTS');
     $items = $block->getProductCollection()
-        ->addFieldToFilter('news_from_date', ['lteq' => $currentTime])
-        ->addFieldToFilter('news_to_date', ['gteq' => $currentTime])
         ->setOrder('sort_order', 'ASC')
         ->getItems();
 
@@ -39,208 +37,104 @@ if ($exist = ($block->getProductCollection() && $block->getProductCollection()->
 ?>
 
 <?php if ($exist):?>
-    <div class="section white-background">
-        <div class="container">
-            <div class="heading-section-1">
-                <h3><?php /* @escapeNotVerified */ echo $title; ?></h3>
-            </div>
-            <div class="m-t-30">
-                <?php /* @escapeNotVerified */ echo '<!-- ' . $image . '-->' ?>
-                <div class="products-<?php /* @escapeNotVerified */ echo $mode; ?> <?php /* @escapeNotVerified */ echo $mode; ?> row">
-                    <ol class="product-items <?php /* @escapeNotVerified */ echo $type; ?>">
-                        <?php $iterator = 1; ?>
-                        <?php foreach ($items as $_item): ?>
-                            <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="col-md-3 col-sm-6">' : '</li><li class="col-md-3 col-sm-6">' ?>
-                            <div class="product-item-info product-1">
-                                <div class="product-image">
-                                    <div class="image-holder">
-                                        <img src="<?php echo $block->getUrl('pub/media/catalog').'product'.$_item->getImage();?>" />
+<section class="section bg-white p-t-60">
+    <div class="container">
+        <?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-our-product-type')->toHtml();?>
+        <ul class="list-reset product-list row isotope-grid">
+            <?php foreach ($items as $_item): ?>
+                <li class="chair col-md-3 col-sm-4 col-xs-12 isotope-item">
+                    <div class="image-box image-box-3">
+                        <div class="image">
+                            <a class="bg-overlay" href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>"></a>
+                                <img src="<?php echo $block->getUrl('pub/media/catalog').'product'.$_item->getImage();?>" />
+                            <a class="btn-quickview" href="#qv<?php echo $_item->getId();?>"><i class="fa fa-search-plus"></i><span>Quick view</span></a>
+                        </div>
+                        <div class="content">
+                            <h3 class="title">
+                                <a title="<?php echo $block->escapeHtml($_item->getName()) ?>"
+                                   href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>"
+                                   class="name">
+                                    <?php echo $block->escapeHtml($_item->getName()) ?>
+                                </a>
+                            </h3>
+                            <?php
+                            echo $block->getProductPriceHtml($_item, $type);
+                            ?>
+                            <?php if ($templateType): ?>
+                                <?php echo $block->getReviewsSummaryHtml($_item, $templateType) ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </li>
+
+                <!-- quick-view-1-->
+                <div class="quickview-modal single-product remodal" data-remodal-id="qv<?php echo $_item->getId();?>">
+                    <button class="remodal-close" data-remodal-action="close" aria-label="Close"></button>
+                    <div class="single-product-detail customScrollbar" data-scroll-cursorcolor="#b9b9b9"
+                         data-scroll-cursorwidth="3px">
+                        <div class="row-cs">
+                            <div class="col-cs-6 product-image-content">
+                                <div class="image-box"><img src="<?php echo $block->getUrl('pub/media/catalog').'product'.$_item->getImage();?>" /></div>
+                            </div>
+                            <div class="col-cs-6 product-summary">
+                                <h3 class="product-title text-block m-b-10">
+                                    <a class="text-black" href="<?php /* @escapeNotVerified */ echo $_item->getProductUrl() ?>">
+                                        <?php /* @escapeNotVerified */ echo $_item->getName() ?>
+                                    </a>
+                                </h3>
+
+                                <span class="product-price m-b-15"><?= /* @escapeNotVerified */ $block->getProductPrice($_item) ?></span>
+                                <p class="product-short-description m-b-15">
+                                    <?php echo $_item->getShortDescription(); ?>
+                                </p>
+                                <div class="add-to-wishlist block-contain m-b-40">
+                                    <div class="block-left" data-toggle="tooltip" title="Add to wishlist">
+                                        <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
+                                            <a class="au-btn au-btn-border au-btn-radius btn-add-to-wishlist" href="#"
+                                               data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_item); ?>'
+                                            <i class="fa fa-heart"></i><span><?php echo __('ADD TO WISHLIST'); ?></span>
+                                            </a>
+                                        <?php endif;?>
                                     </div>
-                                    <?php if ($showWishlist || $showCompare || $showCart): ?>
-                                        <div class="product-action">
-                                            <div class="product-action-list">
-                                                <div class="action-item">
-                                                    <a class="fa fa-search-plus" href="#"
-                                                       data-toggle="modal"
-                                                       data-target="#myModal-<?php echo $_item->getId();?>"
-                                                       data-toggle-tooltip="tooltip"
-                                                       data-placement="top" title="Quick view">
-                                                    </a>
-                                                </div>
-                                                <?php if ($showCart): ?>
-                                                    <div class="action-item">
-                                                        <?php if ($_item->isSaleable()): ?>
-                                                            <?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)): ?>
-                                                                <a class="fa fa-shopping-cart" href="#"
-                                                                        data-mage-init='{"redirectUrl":{"url":"<?php /* @escapeNotVerified */ echo $block->getAddToCartUrl($_item) ?>"}}'
-                                                                        data-toggle-tooltip="tooltip" data-placement="top"
-                                                                        title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>">
-                                                                </a>
-                                                            <?php else: ?>
-                                                                <?php
-                                                                    $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
-                                                                    $postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()])
-                                                                ?>
-                                                                <a class="fa fa-shopping-cart" href="#"
-                                                                        data-post='<?php /* @escapeNotVerified */ echo $postData; ?>'
-                                                                        data-toggle-tooltip="tooltip" data-placement="top"
-                                                                        title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>">
-                                                                </a>
-                                                            <?php endif; ?>
-                                                        <?php else: ?>
-                                                            <?php if ($_item->getIsSalable()): ?>
-                                                                <div class="stock available"><span><?php /* @escapeNotVerified */ echo __('In stock') ?></span></div>
-                                                            <?php else: ?>
-                                                                <div class="stock unavailable"><span><?php /* @escapeNotVerified */ echo __('Out of stock') ?></span></div>
-                                                            <?php endif; ?>
-                                                        <?php endif; ?>
-                                                    </div>
-                                                <?php endif; ?>
-                                                <?php if ($showWishlist): ?>
-                                                    <div class="action-item">
-                                                        <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $showWishlist): ?>
-                                                            <a href="#"
-                                                               data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_item); ?>'
-                                                               class="fa fa-heart" data-action="add-to-wishlist"
-                                                               data-toggle-tooltip="tooltip" data-placement="top"
-                                                               title="<?php /* @escapeNotVerified */ echo __('Add to Wish List') ?>">
-                                                            </a>
-                                                        <?php endif; ?>
-                                                    </div>
-                                                <?php endif; ?>
-                                            </div>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                                <div class="product-content">
-                                    <h3 class="title">
+                                    <div class="block-right" data-toggle="tooltip" title="View full details">
                                         <a title="<?php echo $block->escapeHtml($_item->getName()) ?>"
-                                           href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>"
-                                           class="name">
-                                            <?php echo $block->escapeHtml($_item->getName()) ?>
+                                           href="<?php /* @escapeNotVerified */ echo $_item->getProductUrl() ?>">
+                                            <i class="fa fa-arrow-right"></i><span><?php echo __('Go to detail'); ?></span>
                                         </a>
-                                    </h3>
-                                    <?php
-                                    echo $block->getProductPriceHtml($_item, $type);
-                                    ?>
-
-                                    <?php if ($templateType): ?>
-                                        <?php echo $block->getReviewsSummaryHtml($_item, $templateType) ?>
-                                    <?php endif; ?>
-
-
-                                </div>
-                            </div>
-
-                            <!-- quick-view-1-->
-                            <div class="modal fade quick-view-1" id="myModal-<?php echo $_item->getId();?>" role="dialog">
-                                <div class="modal-dialog">
-                                    <!-- Modal content-->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button class="fa fa-close" type="button" data-dismiss="modal"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-md-5">
-                                                    <!-- .product-detail-image-1-->
-                                                    <div class="product-detail-image-1">
-                                                        <?php
-                                                        $product = $objectManager->create('Magento\Catalog\Model\Product')->load($_item->getId());
-                                                        $images = $product->getMediaGalleryImages();
-                                                        ?>
-                                                        <?php if(count($images) > 0): ?>
-                                                            <div class="product-primary-image owl-carousel" data-carousel-items="1" data-carousel-dotsData="true" data-carousel-nav="true" data-carousel-dots="true" data-carousel-xs="1" data-carousel-sm="1" data-carousel-md="1" data-carousel-lg="1" data-carousel-animateout="fadeOut"
-                                                                 data-carousel-animatein="fadeIn">
-                                                                <?php if(count($images) > 1): ?>
-                                                                    <?php
-                                                                    $lastId = $images->getFirstItem()->getId();
-                                                                    $images->removeItemByKey($lastId);
-                                                                    ?>
-                                                                <?php endif;?>
-                                                                <?php foreach($images as $child): ?>
-                                                                    <img data-dot="&lt;img src='<?php echo $child->getUrl();?>'&gt;"
-                                                                         src="<?php echo $child->getUrl();?>"
-                                                                         alt="product detail image" />
-                                                                <?php endforeach;?>
-                                                            </div>
-                                                        <?php endif;?>
-                                                    </div>
-                                                    <!-- end .product-detail-image-1-->
-                                                </div>
-
-                                                <div class="col-md-7">
-                                                    <!-- .product-detail-content-1-->
-                                                    <div class="product-detail-content-1">
-                                                        <div class="product-name">
-                                                            <h3><?php echo $block->escapeHtml($_item->getName()) ?></h3>
-                                                        </div>
-                                                        <div class="product-cert"></div>
-                                                        <div class="product-price">
-                                                            <?php  echo $block->getProductPriceHtml($_item, $type);?>
-                                                        </div>
-                                                        <div class="product-introduce">
-                                                            <p><?php echo $_item->getShortDescription(); ?></p>
-                                                            <?php if ($_item->getIsSalable()): ?>
-                                                                <p><?php /* @escapeNotVerified */ echo __('In stock') ?></p>
-                                                            <?php else: ?>
-                                                                <p><?php /* @escapeNotVerified */ echo __('Out of stock') ?></p>
-                                                            <?php endif; ?>
-                                                            <p>SKU: <?php echo $_item->getSku(); ?></p>
-                                                        </div>
-
-                                                        <!-- .product-form add to cart-->
-                                                        <div class="prodcut-add-to-cart">
-                                                            <form action="<?= /* @escapeNotVerified */ $block->getSubmitUrl($_item) ?>" method="post"
-                                                                  id="product_addtocart_form_<?php echo $_item->getId();?>" enctype="multipart/form-data">
-                                                                <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $_item->getId() ?>" />
-                                                                <input type="hidden" name="selected_configurable_option" value="" />
-                                                                <input type="hidden" name="related_product" id="related-products-field-<?php echo $_item->getId();?>" value="" />
-                                                                <?= $block->getBlockHtml('formkey') ?>
-                                                                <?php if (!$block->hasOptions()):?>
-                                                                    <input type="number"
-                                                                           name="qty"
-                                                                           id="qty_<?php echo $_item->getId();?>"
-                                                                           value="<?= /* @escapeNotVerified */ __('1') ?>"
-                                                                           title="<?= /* @escapeNotVerified */ __('Qty') ?>"
-                                                                           class="input-text input-size qty"
-                                                                           min="1"
-                                                                    />
-                                                                    <button class="au-btn au-btn-primary au-btn-radius btn-add-to-cart" type="submit"><?php echo __('ADD TO CART') ?></button>
-                                                                    <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $showWishlist): ?>
-                                                                        <a class="au-btn au-btn-border au-btn-radius btn-add-to-wishlist" href="#"
-                                                                           data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_item); ?>'>
-                                                                            <?php echo __('ADD TO WISHLIST'); ?>
-                                                                        </a>
-                                                                    <?php endif;?>
-                                                                <?php else:?>
-                                                                    <a title="<?php echo $block->escapeHtml($_item->getName()) ?>"
-                                                                       href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>"
-                                                                       class="product-item-link">
-                                                                        <?php echo __('Go to detail'); ?>
-                                                                    </a>
-                                                                <?php endif; ?>
-                                                            </form>
-                                                        </div>
-                                                        <!-- end .product-form add to cart-->
-
-                                                    </div>
-                                                    <!-- end .product-detail-content-1-->
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
+                                <form action="<?= /* @escapeNotVerified */ $block->getSubmitUrl($_item) ?>" method="post"
+                                      id="product_addtocart_form_<?php echo $_item->getId();?>" enctype="multipart/form-data">
+                                    <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $_item->getId() ?>" />
+                                    <input type="hidden" name="selected_configurable_option" value="" />
+                                    <input type="hidden" name="related_product" id="related-products-field-<?php echo $_item->getId();?>" value="" />
+                                    <?= $block->getBlockHtml('formkey') ?>
+                                    <div class="product-select row-cs m-b-20">
+                                        <?php if (!$block->hasOptions()):?>
+                                        <div class="col-cs-6 p-l-5" data-toggle="tooltip" title="Quantity">
+                                            <div class="quantity">
+                                                <span class="decrease"></span>
+                                                <input class="au-input-number"
+                                                       name="qty"
+                                                       id="qty_<?php echo $_item->getId();?>"
+                                                       value="<?= /* @escapeNotVerified */ __('1') ?>"
+                                                       title="<?= /* @escapeNotVerified */ __('Qty') ?>"
+                                                       type="number" value="1" min="1" max="100"/>
+                                                <span class="increase"></span></div>
+                                        </div>
+                                    </div>
+                                    <button class="au-btn add-to-cart btn-block m-b-30" type="submit"><?php echo __('ADD TO CART') ?></button>
+                                <?php endif; ?>
+                                </form>
                             </div>
-                            <!-- end quick-view-1-->
-                            <?php echo($iterator == count($items)+1) ? '</li>' : '' ?>
-                        <?php endforeach ?>
-                    </ol>
+                        </div>
+                    </div>
                 </div>
-                <?php echo $block->getPagerHtml() ?>
-            </div>
-        </div>
+                <!-- end quick-view-1-->
+            <?php endforeach ?>
+        </ul>
     </div>
+</section>
 <?php endif;?>
 <script type="text/javascript">
     require([

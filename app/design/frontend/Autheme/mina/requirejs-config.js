@@ -17,7 +17,9 @@ var config = {
             nicescroll: 'js/jquery.nicescroll.min',
             accordion: 'js/jquery.accordion',
             SmoothScroll: 'js/SmoothScroll',
-            remodal: 'js/remodal.min'
+            remodal: 'js/remodal.min',
+            isotope_image: 'js/isotope/imagesloaded.pkgd.min',
+            isotope: 'js/isotope/isotope.pkgd.min'
         }
     },
     shim: {
@@ -35,5 +37,7 @@ var config = {
         accordion: ['jquery'],
         SmoothScroll: ['jquery'],
         remodal: ['jquery'],
+        isotope: ['jquery'],
+        isotope_image: ['jquery','isotope'],
     }
 };
