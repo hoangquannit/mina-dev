@@ -37,5 +37,7 @@
         <container name="mina-about-us-page01" as="mina-about-us-page01" label="About us page" htmlTag="section" before="main.content"/>
 
         <container name="footer-container" as="footer" before="before.body.end" label="Page Footer Container" htmlTag="footer" htmlClass="page-footer" />
+
+        <container name="footer-container-homepage3" as="footer-container-homepage3" before="before.body.end" label="Page Footer Container" htmlTag="footer" htmlClass="footer bg-black p-t-80 p-b-60" />
     </referenceContainer>
 </layout>
