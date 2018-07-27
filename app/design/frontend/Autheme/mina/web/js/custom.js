@@ -5,8 +5,6 @@ define([
     'SmoothScroll',
     'remodal',
     'owl.carousel/owl.carousel.min',
-    'isotope',
-    'isotope_image'
 ],function($){
     "use strict";
     jQuery(document).ready(function($) {
@@ -222,40 +220,6 @@ define([
                 searchInput.addClass('fadeInUp');
             }
         });
-
-        /*ISOTOPE*/
-        var $topeContainer = $('.isotope-grid');
-        var $filter = $('.filter-tope-group');
-
-        // filter items on button click
-        $filter.each(function () {
-            $filter.on('click', 'li', function () {
-                var filterValue = $(this).attr('data-filter');
-                $topeContainer.isotope({filter: filterValue});
-            });
-            var $buttonGroup = $('.filter-tope-group');
-            $buttonGroup.on('click', 'li', function () {
-                $buttonGroup.find('.active').removeClass('active');
-                $(this).addClass('active');
-            });
-        });
-
-        // init Isotope
-        var $grid = $topeContainer.each(function () {
-            $(this).isotope({
-                itemSelector: '.isotope-item',
-                percentPosition: true,
-                masonry: {
-                    columnWidth: '.isotope-item'
-                }
-            });
-        });
-
-        // layout Isotope after each image loads
-        $grid.imagesLoaded().progress(function () {
-            $grid.isotope('layout');
-        });
-
 
 
     });
