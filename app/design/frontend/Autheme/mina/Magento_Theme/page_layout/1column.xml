@@ -16,6 +16,14 @@
 
         <container name="mina-massbottom2" as="mina-massbottom2" label="Page Massbottom2 Container" htmlTag="section" htmlClass="clearfix" after="mina-massbottom"/>
 
+        <container name="mina-massbottom3" as="mina-massbottom3" label="Page Massbottom2 Container" after="mina-massbottom"/>
+
+        <container name="mina-subscribe-home7" as="mina-subscribe-home7" label="Page Massbottom2 Container"/>
+
+        <container name="mina-best-seller" as="mina-best-seller" label="Page Massbottom2 Container" after="mina-subscribe-home7"/>
+
+        <container name="mina-massbottom4" as="mina-massbottom4" label="Page Massbottom2 Container" after="mina-best-seller"/>
+
         <container name="mina-product-banner" as="mina-product-banner" label="Page Massbottom2 Container" after="mina-slideshow"/>
 
         <container name="mina-deal-of-the-day" as="mina-deal-of-the-day" label="Subscribe homepage 4" htmlTag="section" after="main.content"/>
