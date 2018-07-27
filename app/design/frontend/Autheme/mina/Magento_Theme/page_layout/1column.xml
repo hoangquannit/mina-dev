@@ -10,11 +10,13 @@
     <referenceContainer name="page.wrapper">
         <container name="header.container" as="header_container" label="Page Header Container"  htmlTag="header" htmlClass="page-header" before="-" />
 
-        <container name="mina-slideshow" as="mina-slideshow" label="Page Slideshow Container" htmlTag="section" htmlClass="mina-slideshow clearfix m-b-10" before="main.content"/>
+        <container name="mina-slideshow" as="mina-slideshow" label="Page Slideshow Container" htmlTag="section" htmlClass="mina-slideshow" before="main.content"/>
 
         <container name="mina-massbottom" as="mina-massbottom" label="Page Massbottom Container" htmlTag="section" htmlClass="section p-l-50 p-r-50 p-t-30 bg-white" after="mina-for-room"/>
 
-        <container name="mina-massbottom2" as="eco-massbottom2" label="Page Massbottom2 Container" htmlTag="section" htmlClass="clearfix" after="mina-massbottom"/>
+        <container name="mina-massbottom2" as="mina-massbottom2" label="Page Massbottom2 Container" htmlTag="section" htmlClass="clearfix" after="mina-massbottom"/>
+
+        <container name="mina-product-banner" as="mina-product-banner" label="Page Massbottom2 Container" after="mina-slideshow"/>
 
         <container name="mina-deal-of-the-day" as="mina-deal-of-the-day" label="Subscribe homepage 4" htmlTag="section" after="main.content"/>
 
