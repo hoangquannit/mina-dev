@@ -18,6 +18,8 @@
 
         <container name="mina-massbottom3" as="mina-massbottom3" label="Page Massbottom2 Container" after="mina-massbottom"/>
 
+        <container name="mina-massbottom5" as="mina-massbottom5" label="Page Massbottom2 Container" after="mina-massbottom" htmlTag="div" htmlClass="page-wrap page-push-to-left"/>
+
         <container name="mina-subscribe-home7" as="mina-subscribe-home7" label="Page Massbottom2 Container"/>
 
         <container name="mina-best-seller" as="mina-best-seller" label="Page Massbottom2 Container" after="mina-subscribe-home7"/>
