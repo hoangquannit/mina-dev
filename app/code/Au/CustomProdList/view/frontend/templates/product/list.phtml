@@ -1,0 +1,161 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+?>
+<?php
+$_productCollection = $block->getLoadedProductCollection();
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+?>
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty"><div><?= /* @escapeNotVerified */ __('We can\'t find products matching the selection.') ?></div></div>
+<?php else: ?>
+    <div class="toolbar-top">
+        <?= $block->getToolbarHtml() ?>
+    </div>
+    <?= $block->getAdditionalHtml() ?>
+    <?php
+    if ($block->getMode() == 'grid') {
+        $viewMode = 'grid';
+        $classView = 'shop-view-grid';
+        $image = 'category_page_grid';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    } else {
+        $viewMode = 'list';
+        $classView = 'shop-view-list';
+        $image = 'category_page_list';
+        $showDescription = true;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+    }
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    ?>
+    <div class="shop-content shop-content-full-width shop-view-grid p-t-50">
+        <ul class="products row">
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+            <?php foreach ($_productCollection as $_product): ?>
+                <li class="product col-md-4 col-sm-6 matchHeigh">
+                    <div class="image-box image-box-5">
+                        <?php
+                        $productImage = $block->getImage($_product, $image);
+                        if ($pos != null) {
+                            $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                                . 'top:' . $productImage->getHeight() . 'px;"';
+                        }
+                        ?>
+                        <?php // Product Image ?>
+                        <div class="image">
+                            <a class="bg-overlay" href="<?php echo $_product->getProductUrl() ?>"></a>
+                            <img src="<?php echo $block->getUrl('pub/media/catalog').'product'.$_product->getImage();?>" />
+                            <a class="btn-quickview" href="#qv<?php echo $_product->getId();?>"><i class="fa fa-search-plus"></i><span>Quick view</span></a>
+                        </div>
+                        <div class="content">
+                            <div class="title-bar">
+                                <h3 class="title">
+                                    <a class="product-item-link"
+                                       href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>">
+                                        <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                                    </a>
+                                </h3>
+                            </div>
+                            <?= $block->getReviewsSummaryHtml($_product, $templateType) ?>
+                            <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
+                            <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                        </div>
+                    </div>
+
+                    <div class="quickview-modal single-product remodal" data-remodal-id="qv<?php echo $_product->getId();?>">
+                        <button class="remodal-close" data-remodal-action="close" aria-label="Close"></button>
+                        <div class="single-product-detail customScrollbar" data-scroll-cursorcolor="#b9b9b9"
+                             data-scroll-cursorwidth="3px">
+                            <div class="row-cs">
+                                <div class="col-cs-6 product-image-content">
+                                    <div class="image-box"><img src="<?php echo $block->getUrl('pub/media/catalog').'product'.$_product->getImage();?>" /></div>
+                                </div>
+                                <div class="col-cs-6 product-summary">
+                                    <h3 class="product-title text-block m-b-10">
+                                        <a class="text-black" href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>">
+                                            <?php /* @escapeNotVerified */ echo $_product->getName() ?>
+                                        </a>
+                                    </h3>
+
+                                    <span class="product-price m-b-15"><?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?></span>
+                                    <p class="product-short-description m-b-15">
+                                        <?php echo $_product->getShortDescription(); ?>
+                                    </p>
+                                    <div class="add-to-wishlist block-contain m-b-40">
+                                        <div class="block-left" data-toggle="tooltip" title="Add to wishlist">
+                                            <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
+                                                <a class="au-btn au-btn-border au-btn-radius btn-add-to-wishlist" href="#"
+                                                   data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_product); ?>'
+                                                    <i class="fa fa-heart"></i><span><?php echo __('ADD TO WISHLIST'); ?></span>
+                                                </a>
+                                            <?php endif;?>
+                                        </div>
+                                        <div class="block-right" data-toggle="tooltip" title="View full details">
+                                            <a title="<?php echo $block->escapeHtml($_product->getName()) ?>"
+                                               href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>">
+                                                <i class="fa fa-arrow-right"></i><span><?php echo __('Go to detail'); ?></span>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <form action="<?php echo /* @escapeNotVerified */  $postParams['action']?>" method="post"
+                                          id="product_addtocart_form_<?php echo $_product->getId();?>" enctype="multipart/form-data">
+                                        <input type="hidden" name="product" value="<?= /* @escapeNotVerified */ $_product->getId() ?>" />
+                                        <input type="hidden" name="selected_configurable_option" value="" />
+                                        <input type="hidden" name="related_product" id="related-products-field-<?php echo $_product->getId();?>" value="" />
+                                        <?= $block->getBlockHtml('formkey') ?>
+                                        <div class="product-select row-cs m-b-20">
+                                            <?php if (!$block->hasOptions()):?>
+                                            <div class="col-cs-6 p-l-5" data-toggle="tooltip" title="Quantity">
+                                                <div class="quantity">
+                                                    <span class="decrease"></span>
+                                                    <input class="au-input-number"
+                                                           name="qty"
+                                                           id="qty_<?php echo $_product->getId();?>"
+                                                           value="<?= /* @escapeNotVerified */ __('1') ?>"
+                                                           title="<?= /* @escapeNotVerified */ __('Qty') ?>"
+                                                           type="number" value="1" min="1" max="100"/>
+                                                    <span class="increase"></span></div>
+                                            </div>
+                                        </div>
+                                        <button class="au-btn add-to-cart btn-block m-b-30" type="submit"><?php echo __('ADD TO CART') ?></button>
+                                    <?php endif; ?>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+    <div class="toolbar-bottom">
+        <?= $block->getToolbarHtml() ?>
+    </div>
+    <?php if (!$block->isRedirectToCartEnabled()) : ?>
+        <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form], .form.map.checkout": {
+                "catalogAddToCart": {}
+            }
+        }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>
