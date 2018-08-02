@@ -62,23 +62,23 @@
             <each args="getRegion('subtotalContainer')" render=""/>
             <each args="getRegion('extraInfo')" render=""/>
         </p>
-        <a class="au-btn au-btn-border au-btn-radius btn-viewcart" data-bind="attr: {href: shoppingCartUrl}">
-            <span translate="'VIEW CART'"/>
-        </a>
-        <button
-            if="getCartParam('possible_onepage_checkout')"
-            id="top-cart-btn-checkout"
-            type="button"
-            class="au-btn au-btn-primary au-btn-radius btn-checkout"
-            data-action="close"
-            data-bind="
-                attr: {
-                    title: $t('CHECKOUT')
-                },
-                click: closeMinicart()
-            "
-            translate="'CHECKOUT'"
-            />
+        <div class="mini-shopcart-action">
+            <a class="au-btn btn-viewcart" data-bind="attr: {href: shoppingCartUrl}">VIEW CART</a>
+            <button
+                if="getCartParam('possible_onepage_checkout')"
+                id="top-cart-btn-checkout"
+                type="button"
+                class="au-btn btn-checkout"
+                data-action="close"
+                data-bind="
+                    attr: {
+                        title: $t('CHECKOUT')
+                    },
+                    click: closeMinicart()
+                "
+                translate="'CHECKOUT'"
+                />
+        </div>
     </div>
 
     <div id="minicart-widgets" class="minicart-widgets">
