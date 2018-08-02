@@ -58,6 +58,8 @@ website:   	http://www.themepunch.com
 
 .modal-popup .modal-inner-wrap{margin: 14rem auto!important;}
 
+.remodal-close:hover{ background: none!important; border: none!important;}
+
 .tp-caption.small_text,.small_text
 {
 	border-style:none;
