@@ -221,6 +221,41 @@ define([
             }
         });
 
+        /*Input number controller*/
+        $('.quantity').each(function() {
+            var spinner = $(this),
+                input = spinner.find('input[type="number"]'),
+                btnUp = spinner.find('.increase'),
+                btnDown = spinner.find('.decrease'),
+                min = input.attr('min'),
+                max = input.attr('max');
+
+            btnUp.click(function() {
+                var oldValue = parseFloat(input.val());
+                var newVal = undefined;
+                if (oldValue >= max) {
+                    newVal = oldValue;
+                } else {
+                    newVal = oldValue + 1;
+                }
+                spinner.find("input").val(newVal);
+                spinner.find("input").trigger("change");
+            });
+
+            btnDown.click(function() {
+                var oldValue = parseFloat(input.val());
+                var newVal = undefined;
+                if (oldValue <= min) {
+                    newVal = oldValue;
+                } else {
+                    newVal = oldValue - 1;
+                }
+                spinner.find("input").val(newVal);
+                spinner.find("input").trigger("change");
+            });
+
+        });
+
 
     });
 });
