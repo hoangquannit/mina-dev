@@ -60,6 +60,25 @@ website:   	http://www.themepunch.com
 
 .remodal-close:hover{ background: none!important; border: none!important;}
 
+.ui-slider .ui-slider-handle{
+	position: absolute;
+	z-index: 2;
+	cursor: default;
+	width: 16px;
+	height: 16px;
+	background: #999;
+	display: block;
+	position: absolute;
+	top: 50%;
+	margin-top: -7px;
+	cursor: pointer;
+	border-radius: 0!important;
+}
+
+.ui-slider-horizontal{
+	height: 4px!important;
+}
+
 .tp-caption.small_text,.small_text
 {
 	border-style:none;
