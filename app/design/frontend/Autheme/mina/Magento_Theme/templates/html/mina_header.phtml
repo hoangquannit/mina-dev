@@ -3,7 +3,7 @@
 	$request = $objectManager->get('Magento\Framework\App\Action\Context')->getRequest();
 ?>
 <?php if ($request->getFullActionName() == 'cms_index_index'):?>
-	<?php if($block->getLayout()->getBlock('page.main.title')->getPageTitle() == 'Home Page'): ?>?>
+	<?php if($block->getLayout()->getBlock('page.main.title')->getPageTitle() == 'Home Page'): ?>
 		<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-nav1')->toHtml();?>
 	<?php else: ?>
 		<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-nav5')->toHtml();?>
