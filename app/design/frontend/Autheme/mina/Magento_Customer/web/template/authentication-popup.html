@@ -1,0 +1,70 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+ -->
+
+<div class="login-modal"
+     data-bind="afterRender: setModalElement, blockLoader: isLoading"
+     style="display: none">
+    <div class="modal-tabs">
+        <ul class="tabs">
+            <li class="active"><a href="#create-customer" data-toggle="tab">Create account</a></li>
+            <li><a href="#customer-login" data-toggle="tab">Sign in</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="create-customer">
+                <p class="text-block text-black m-b-5" data-bind="i18n: 'You are using our secure server'"></p>
+                <a class="au-btn btn-block" data-bind="attr: {href: registerUrl}">
+                    <span data-bind="i18n: 'Create an Account'"></span>
+                </a>
+            </div>
+
+
+
+            <div class="tab-pane" id="customer-login">
+                <p class="text-block text-black m-b-5" data-bind="i18n: 'You are using our secure server'"></p>
+                <!-- ko foreach: getRegion('messages') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+                <!--/ko-->
+                <!-- ko foreach: getRegion('before') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+                <!-- /ko -->
+                <div  class="row-cs" aria-labelledby="block-customer-login-heading">
+                    <form class="form form-login"
+                          method="post"
+                          data-bind="event: {submit: login }"
+                          id="login-form">
+                        <div class="col-cs-12 form-group" data-bind="attr: {'data-hasrequired': $t('* Required Fields')}">
+                            <input name="username"
+                                   id="email"
+                                   type="email"
+                                   class="au-input-1"
+                                   placeholder="Your Email"
+                                   data-bind="attr: {autocomplete: autocomplete}"
+                                   data-validate="{required:true, 'validate-email':true}">
+                        </div>
+                        <div class="col-cs-12 form-group">
+                            <input name="password"
+                                   type="password"
+                                   class="au-input-1"
+                                   id="pass"
+                                   placeholder="Password"
+                                   data-bind="attr: {autocomplete: autocomplete}"
+                                   data-validate="{required:true}">
+                        </div>
+                            <!-- ko foreach: getRegion('additional-login-form-fields') -->
+                            <!-- ko template: getTemplate() --><!-- /ko -->
+                            <!-- /ko -->
+                        <div class="col-cs-12 form-group">
+                            <input name="context" type="hidden" value="checkout" />
+                            <input class="au-btn btn-block" type="submit" value="Sign in"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
