@@ -1,13 +1,12 @@
 <?php
 	$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 	$request = $objectManager->get('Magento\Framework\App\Action\Context')->getRequest();
+	$cmsPage = $objectManager->get('\Magento\Cms\Model\Page');
 ?>
-<?php if ($request->getFullActionName() == 'cms_index_index'):?>
-	<?php if($block->getLayout()->getBlock('page.main.title')->getPageTitle() == 'Home Page'): ?>
+<?php if ($request->getFullActionName() == 'cms_index_index' AND $block->getLayout()->getBlock('page.main.title')->getPageTitle() == 'Home Page'):?>
 		<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-nav1')->toHtml();?>
-	<?php else: ?>
+<?php elseif($request->getFullActionName() == 'cms_index_index' AND $cmsPage->getIdentifier() == 'home-page-5'):?>
 		<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-nav5')->toHtml();?>
-	<?php endif;?>
 <?php else: ?>
 	<div class="section section-header section-header-1 pos-absolute bg-white hidden-tablet-landscape js-header"
 		 data-scroll-offset="300">
