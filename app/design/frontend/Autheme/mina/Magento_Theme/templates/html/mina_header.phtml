@@ -28,5 +28,26 @@
 			</div>
 		</div>
 	</div>
-	<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-nav2-mobile')->toHtml();?>
+	<div class="blank-bar p-b-100 hidden-tablet-landscape"></div><!-- Header Mobile-->
+	<div class="section section-header section-header-mobile section-header-mobile-1 hidden-tablet-landscape-up">
+		<div class="header-main block-contain">
+			<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-logo-nav2-mobile')->toHtml();?>
+			<div class="block-right">
+				<div class="mini-cart">
+					<button class="js-btn-cart btn-cart" data-toggle="tooltip" title="Shopping cart"><span
+							class="totals"><?php echo $this->getChildHtml('minicart'); ?></span>
+						<i class="fa fa-shopping-cart"></i>
+					</button>
+				</div>
+				<div class="search-box">
+					<button class="js-btn-search fa fa-search" data-toggle="tooltip" title="Search"></button>
+					<div class="input-holder animated"><?php echo $this->getChildHtml("topSearch"); ?></div>
+				</div>
+				<button class="js-toggle-navbar-mobile hamburger hamburger--elastic">
+					<span class="hamburger-box"><span class="hamburger-inner"></span></span>
+				</button>
+			</div>
+		</div>
+		<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-nav2-mobile')->toHtml();?>
+    </div>
 <?php endif;?>

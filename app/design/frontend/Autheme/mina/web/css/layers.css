@@ -32,6 +32,13 @@ website:   	http://www.themepunch.com
 	text-decoration:underline!important;
 }
 
+@media only screen and (max-width: 639px){
+	.minicart-wrapper{
+		top: 0!important;
+		margin-top: 0!important;
+	}
+}
+
 .tp-caption.medium_grey,.medium_grey
 {
 	background-color:#888;
