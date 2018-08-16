@@ -4,7 +4,7 @@ define([
     'nicescroll',
     'SmoothScroll',
     'remodal',
-    'owl.carousel/owl.carousel.min',
+    'owl.carousel/owl.carousel.min'
 ],function($){
     "use strict";
     jQuery(document).ready(function($) {
@@ -41,15 +41,7 @@ define([
                     }
                 }
             }
-
-            jQuery(this).niceScroll({
-                cursorcolor: option.cursorcolor,
-                cursorwidth: option.cursorwidth,
-                cursorborder: option.cursorborder,
-                scrollspeed: option.scrollspeed,
-                mousescrollstep: option.mousescrollstep,
-                cursoropacitymax: option.cursoropacitymax
-            });
+            
         });
 
         // Button caret dropdow
