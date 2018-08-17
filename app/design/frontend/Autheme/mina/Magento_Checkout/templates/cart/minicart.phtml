@@ -15,7 +15,7 @@
 
 <div data-block="minicart" class="minicart-wrapper cart">
     <a class="showcart" href="<?= /* @escapeNotVerified */ $block->getShoppingCartUrl() ?>"
-       data-bind="scope: 'minicart_content'"><span class="count-item-mini-cart" data-bind="html: getCartParam('summary_count')"></span>
+       data-bind="scope: 'minicart_content'"><span class="count-item-mini-cart" data-bind="html: getCartParam('summary_count')">0</span>
     </a>
     <?php if ($block->getIsNeedToDisplaySideBar()): ?>
         <div class="block block-minicart empty "
