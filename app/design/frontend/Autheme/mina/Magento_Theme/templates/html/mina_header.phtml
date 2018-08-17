@@ -5,7 +5,7 @@
 ?>
 <?php if ($request->getFullActionName() == 'cms_index_index' AND $block->getLayout()->getBlock('page.main.title')->getPageTitle() == 'Home Page'):?>
 		<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-nav1')->toHtml();?>
-<?php elseif($request->getFullActionName() == 'cms_index_index' AND $cmsPage->getIdentifier() == 'home-page-5'):?>
+<?php elseif($cmsPage->getIdentifier() == 'home-page-5'):?>
 		<?php  echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('mina-nav5')->toHtml();?>
 <?php else: ?>
 	<div class="section section-header section-header-1 pos-absolute bg-white hidden-tablet-landscape js-header"
