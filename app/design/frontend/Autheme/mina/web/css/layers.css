@@ -69,6 +69,7 @@ website:   	http://www.themepunch.com
 .remodal-close:hover{ background: none!important; border: none!important;}
 
 .cms-page-view .page-main .columns{ display: none!important;}
+.cms-contact-us .page-main .columns{ display: block!important;}
 
 .ui-slider .ui-slider-handle{
 	position: absolute;
